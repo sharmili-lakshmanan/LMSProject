@@ -1,0 +1,61 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Catalog | EduShelf{% endblock title %}
+  {% block extra_head %}
+  <link rel="stylesheet" href="{% static 'core/css/login.css' %}">
+  {% endblock %}
+
+{% block content %}
+
+  <div class="container" id="auth-container">
+    <!-- Sign In Form -->
+    <div class="form-container sign-in-container">
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <h2>Sign In</h2>
+        <input type="text" name="username" placeholder="Login or email" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <a href="{% url 'reset_password' %}">Forgot your password?</a>
+        <button type="submit">Sign In</button>
+        <button class="google-btn" type="button">Sign in with Google</button>
+      </form>
+    </div>
+    <!-- Sign Up Form -->
+    <div class="form-container sign-up-container">
+      <form action="#">
+        <h2>Sign Up</h2>
+        <input type="text" placeholder="Admission Number" required />
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="text" placeholder="Course" required />
+        <input type="text" placeholder="Admission Year" required />
+        <input type="text" placeholder="Passout Year" required />
+        <input type="tel" placeholder="Phone Number" required />
+        <input type="password" placeholder="Password" required />
+        <input type="password" placeholder="Confirm Password" required />
+        <label><input type="checkbox" required /> I accept terms & conditions</label>
+        <button type="submit">Sign Up</button>
+
+      </form>
+    </div>
+    <!-- Overlay -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h2>Welcome Back!</h2>
+          <p>To keep connected with us please login</p>
+          <button class="ghost" id="signIn" type="button">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h2>Hello, Friend!</h2>
+          <p>Enter your personal details and start your journey</p>
+          <button class="ghost" id="signUp" type="button">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'core/js/login.js' %}"></script>
+{% endblock extra_js %}

@@ -1,0 +1,114 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: rebeccapurple;
+        }
+        p {
+            font-size: 1.2em;
+            color:palevioletred;
+            margin-bottom: 30px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>404 </h1>
+    <p>The page you are looking for does not exist.</p>
+    <a href="{% url 'index' %}">Return to Home</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 5em;
+            margin-bottom: 20px;
+            color: rebeccapurple;
+            animation: bounce 1s infinite;
+        }
+
+        p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            color: palevioletred;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .typing {
+            display: inline-block;
+            border-right: 2px solid #555;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="error-code">404</h1>
+    <p class="typing" id="message"></p>
+    <br><br>
+    <a href="{% url 'index' %}">Return to Home</a>
+
+    <script>
+        // Typing effect
+        const message = "The page you are looking for does not exist.";
+        let i = 0;
+        const speed = 50;
+        function typeWriter() {
+            if (i < message.length) {
+                document.getElementById("message").innerHTML += message.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        window.onload = typeWriter;
+    </script>
+</body>
+</html>

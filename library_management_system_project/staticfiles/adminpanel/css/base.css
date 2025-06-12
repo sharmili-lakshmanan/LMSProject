@@ -1,0 +1,289 @@
+/* Reset and Base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  display: flex;
+}
+
+/* Sidebar Styles */
+/* .sidebar {
+  width: 250px;
+  background-color: #1e293b;
+  min-height: 100vh;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.sidebar-title {
+  font-size: 24px;
+  color: #facc15;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu a,
+.sidebar-menu label {
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu label:hover {
+  background-color: #334155;
+  color: #facc15;
+}
+
+.sidebar-menu i {
+  margin-right: 10px;
+  min-width: 20px;
+  text-align: center;
+} */
+
+/* Dropdown Submenu */
+/* .submenu {
+  display: none;
+  flex-direction: column;
+  padding-left: 25px;
+}
+
+.dropdown input:checked + label + .submenu {
+  display: flex;
+}
+
+.submenu a {
+  font-size: 0.9rem;
+  padding: 8px 10px;
+}
+
+.submenu a:hover {
+  background-color: #475569;
+  border-radius: 4px;
+  color: #facc15;
+} */ 
+
+/* ===== Reset & Base Setup ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  color: #1c1c1c;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ===== Sidebar Navigation ===== */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #0f1d40;
+  color: white;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffc107;
+  margin-bottom: 2rem;
+}
+
+.sidebar-menu li {
+  margin-bottom: 1rem;
+}
+
+.sidebar-menu li a,
+.sidebar-menu label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu label:hover {
+  background-color: #1a2a50;
+}
+
+.sidebar-menu li a.active {
+  background-color: #1c2c4c;
+  border-left: 4px solid #ffc107;
+  font-weight: bold;
+}
+
+/* ===== Dropdown Submenu ===== */
+.dropdown .submenu {
+  display: none;
+  padding-left: 1.5rem;
+}
+
+.dropdown input:checked ~ .submenu {
+  display: block;
+}
+
+/* ===== Main Content ===== */
+/* .main-content {
+  margin-left: 250px;
+  padding: 2rem;
+  transition: margin-left 0.3s ease-in-out;
+} */
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .sidebar-toggle-btn {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    z-index: 1100;
+    color: #0f1d40;
+  }
+}
+
+/* ===== Alerts / Messages ===== */
+.messages {
+  margin-bottom: 1rem;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.alert.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+/* ===== Toggle Button & Theme ===== */
+.theme-toggle-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #0f1d40;
+  cursor: pointer;
+}
+
+/* ===== Utility Classes ===== */
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  padding: 1rem;
+}
+
+/* ===== Dark Mode Support ===== */
+body.dark-mode {
+  background-color: #121212;
+  color: #eaeaea;
+}
+
+body.dark-mode .sidebar {
+  background-color: #1c1c2e;
+}
+
+body.dark-mode .main-content {
+  background-color: #121212;
+}
+
+body.dark-mode a,
+body.dark-mode .sidebar-menu li a {
+  color: #eaeaea;
+}
+
+body.dark-mode .card {
+  background-color: #1f1f2f;
+}
+
+body.dark-mode .alert.success {
+  background-color: #254d32;
+  color: #b6f7c1;
+}
+

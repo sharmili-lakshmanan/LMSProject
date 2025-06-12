@@ -1,0 +1,141 @@
+
+{% extends "adminpanel/base.html" %}
+{% load static %}
+
+{% block title %}Admin Dashboard | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'adminpanel/css/view_books.css' %}">
+{% endblock extra_head %}
+{% block content %}
+
+<div class="main-content-books">
+  <div class="page-header">
+    <h1>View All Books</h1>
+    <!-- <div class="breadcrumb">Home > Manage Books</div> -->
+  </div>
+
+   <div class="table-actions">
+        <a href="{% url 'add_book' %}" class="add-btn"><i class="fas fa-user-plus"></i> Add Book</a>
+      </div>
+
+
+  <!-- Book Table -->
+  <div class="table-container">
+    <table class="book-table">
+      <thead>
+        <tr>
+          <th>ISBN</th>
+          <th>Book Name</th>
+          <th>Department</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Borrowed</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>8131733092</td>
+          <td>Computer Fundamentals</td>
+          <td>Computer Science</td>
+          <td>400</td>
+          <td>5</td>
+          <td>0</td>
+          <td>
+            <a class="btn-action view">👁 View</a>
+            <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
+            <a class="btn-action delete">🗑️ Delete</a>
+          </td>
+        </tr>
+        <!-- More rows can be added here -->
+
+        <tr>
+  <td>9780131103627</td>
+  <td>The C Programming Language</td>
+  <td>Computer Science</td>
+  <td>450</td>
+  <td>10</td>
+  <td>3</td>
+  <td>
+    <a class="btn-action view">👁 View</a>
+    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
+    <a class="btn-action delete">🗑️ Delete</a>
+  </td>
+</tr>
+<tr>
+  <td>9780262033848</td>
+  <td>Introduction to Algorithms</td>
+  <td>Computer Science</td>
+  <td>850</td>
+  <td>6</td>
+  <td>2</td>
+  <td>
+    <a class="btn-action view">👁 View</a>
+    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
+    <a class="btn-action delete">🗑️ Delete</a>
+  </td>
+</tr>
+<tr>
+  <td>9780199232765</td>
+  <td>Organic Chemistry</td>
+  <td>Chemistry</td>
+  <td>950</td>
+  <td>8</td>
+  <td>5</td>
+  <td>
+    <a class="btn-action view">👁 View</a>
+    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
+    <a class="btn-action delete">🗑️ Delete</a>
+  </td>
+</tr>
+<tr>
+  <td>9780321573513</td>
+  <td>Calculus: Early Transcendentals</td>
+  <td>Mathematics</td>
+  <td>780</td>
+  <td>7</td>
+  <td>4</td>
+  <td>
+    <a class="btn-action view">👁 View</a>
+    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
+    <a class="btn-action delete">🗑️ Delete</a>
+  </td>
+</tr>
+<tr>
+  <td>9780140449136</td>
+  <td>The Republic</td>
+  <td>Philosophy</td>
+  <td>300</td>
+  <td>4</td>
+  <td>0</td>
+  <td>
+    <a class="btn-action view">👁 View</a>
+    <a class="btn-action edit text-decoration-none" href="{% url 'edit_book' %}">✏️ Edit</a>
+    <a class="btn-action delete">🗑️ Delete</a>
+  </td>
+</tr>
+<tr>
+  <td>9780132350884</td>
+  <td>Clean Code</td>
+  <td>Software Engineering</td>
+  <td>600</td>
+  <td>9</td>
+  <td>1</td>
+  <td>
+    <a class="btn-action view">👁 View</a>
+    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
+    <a class="btn-action delete">🗑️ Delete</a>
+  </td>
+</tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal remains the same... -->
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+{% endblock extra_js %}

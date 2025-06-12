@@ -1,0 +1,178 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Catalog | EduShelf{% endblock title %}
+  {% block extra_head %}
+  <link rel="stylesheet" href="{% static 'core/css/catalog.css' %}"> 
+  {% endblock %}
+
+{% block content %}
+<!-- Catalog Section -->
+<div class="container py-5">
+  <h2 class="text-center mb-4 section-title">Browse Our Collection</h2>
+
+  <!-- Search + Filter -->
+  <div class="row mb-4">
+    <div class="col-md-8">
+      <input type="text" class="form-control" placeholder="Search by title, author, or category..."/>
+    </div>
+    <div class="col-md-4">
+      <select class="form-select">
+        <option selected>Filter by Category</option>
+        <option>Fiction</option>
+        <option>Non-fiction</option>
+        <option>Science</option>
+        <option>History</option>
+        <option>Technology</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Books Grid -->
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <!-- Book Card Example -->
+    <div class="col">
+      <div class="card book-card h-100">
+        <img src="{% static 'core/images/book1.jpg' %}" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+     <div class="col">
+      <div class="card book-card h-100">
+        <img src="{% static 'core/images/book2.jpg' %}" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+     <div class="col">
+      <div class="card book-card h-100">
+        <img src="{% static 'core/images/book3.jpg' %}" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+     <div class="col">
+      <div class="card book-card h-100">
+        <img src="{% static 'core/images/book4.jpg' %}" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+     <div class="col">
+      <div class="card book-card h-100">
+        <img src="{% static 'core/images/book5.jpg' %}" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+     <div class="col">
+      <div class="card book-card h-100">
+        <img src="{% static 'core/images/book6.jpg' %}" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+     <div class="col">
+      <div class="card book-card h-100">
+        <img src="{% static 'core/images/book3.jpg' %}" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+     <div class="col">
+      <div class="card book-card h-100">
+        <img src="https://via.placeholder.com/300x200?text=Book+Cover" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+     <div class="col">
+      <div class="card book-card h-100">
+        <img src="https://via.placeholder.com/300x200?text=Book+Cover" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+     <div class="col">
+      <div class="card book-card h-100">
+        <img src="https://via.placeholder.com/300x200?text=Book+Cover" class="card-img-top book-cover" alt="Book Cover">
+        <div class="card-body">
+          <h5 class="card-title">Book Title 1</h5>
+          <p class="card-text text-muted">by Author Name</p>
+          <p class="card-text">A short description or summary of the book content.</p>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <button class="btn btn-accent w-100">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more book cards as needed -->
+
+  </div>
+</div>
+
+{% endblock %}

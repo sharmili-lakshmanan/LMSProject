@@ -1,0 +1,58 @@
+
+
+
+/*main content styles*/
+
+.content-wrapper {
+  background: #f8f9fa;
+  padding: 2rem;
+    margin-left: 250px; /* Adjust for sidebar width */
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.breadcrumb {
+  margin-bottom: 1rem;
+  color: #6c757d;
+}
+
+.issued-books-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.issued-books-table th,
+.issued-books-table td {
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+}
+
+.issued-books-table input[type="text"] {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  margin: 0 2px;
+}
+
+.btn-view {
+  color: #f0ad4e;
+}
+
+.btn-return {
+  color: #d9534f;
+}

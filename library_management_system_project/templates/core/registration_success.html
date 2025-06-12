@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block title %}Login | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'core/css/registration_success.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+
+    <h2>Registration Successful!</h2>
+    <p><b>{{full_name}}</b>Your Library User ID is: <strong>{{user_id }}</strong></p>
+    <p>Please save this ID. You will need it to log in.</p>
+    <a href="{% url 'login' %}">Go to Login</a>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'core/js/login.js' %}"></script>
+{% endblock %}

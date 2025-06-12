@@ -1,0 +1,98 @@
+
+
+/* main content */
+
+/* .dashboard-content {
+  padding: 30px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+      width: 100%;
+}
+
+.dashboard-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #333;
+} */
+
+/* EduShelf Theme Colors */
+:root {
+  --edushelf-primary: #1a237e; /* Deep Blue */
+  --edushelf-accent: #ffb300; /* Warm Gold */
+  --edushelf-bg: #f9f9f9;
+  --edushelf-text: #333;
+}
+
+/* Main Section */
+.report-issue-container{
+  margin-left: 350px;
+  margin-top: 100px;
+  width: 80%;
+}
+
+/* Form Container */
+form {
+  position: relative;
+  top: 70px;
+  left: 9px;
+  width: 80%;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Labels */
+form label {
+  color: var(--edushelf-text);
+  font-weight: 500;
+}
+
+/* Inputs, Selects, and Textareas */
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form select,
+form textarea {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.625rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: var(--edushelf-accent);
+  box-shadow: 0 0 0 3px rgba(255, 179, 0, 0.2);
+  outline: none;
+}
+
+/* Buttons */
+form button {
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form button[type="submit"] {
+  background-color: var(--edushelf-primary);
+  color: #fff;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0d155e;
+  box-shadow: 0 2px 8px rgba(26, 35, 126, 0.3);
+}
+
+form button[type="reset"] {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+form button[type="reset"]:hover {
+  background-color: #d5d5d5;
+}

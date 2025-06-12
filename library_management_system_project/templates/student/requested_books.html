@@ -1,0 +1,97 @@
+{% extends 'student/base.html' %}
+{% load static %}
+
+{% block title %}Requested Books | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'student/css/requested_books.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-4">
+        <h4 class="mb-4">Requested Books</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>Book ID</th>
+                        <th>Book Name</th>
+                        <th>Request Time</th>
+                        <th>Request Date</th>
+                        <th>Collection Date</th>
+                        <th>Collection Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <!-- <tbody>
+                                <tr>
+                                    <td>#101</td>
+                                    <td>Introduction to Algorithms</td>
+                                    <td>10:30 AM</td>
+                                    <td>2025-06-01</td>
+                                    <td>2025-06-05</td>
+                                    <td>2:00 PM</td>
+                                    <td class="status-approved">Approved</td>
+                                </tr>
+                                <tr>
+                                    <td>#102</td>
+                                    <td>Data Structures</td>
+                                    <td>11:15 AM</td>
+                                    <td>2025-06-02</td>
+                                    <td>2025-06-06</td>
+                                    <td>10:00 AM</td>
+                                    <td class="status-pending">Pending</td>
+                                </tr>
+                                <tr>
+                                    <td>#103</td>
+                                    <td>Computer Networks</td>
+                                    <td>12:00 PM</td>
+                                    <td>2025-06-02</td>
+                                    <td>2025-06-07</td>
+                                    <td>3:30 PM</td>
+                                    <td class="status-rejected">Rejected</td>
+                                </tr>
+                            </tbody> -->
+                <tbody>
+                    {% for req in requests %}
+                    <tr>
+                        <td>{{ req.book.book_id }}</td>
+                        <td>{{ req.book.title }}</td>
+                        <td>{{ req.requested_at|date:"h:i A" }}</td>
+                        <td>{{ req.requested_at|date:"Y-m-d" }}</td>
+                        <td>
+                            {# You may want to add a field for collection date in your model if needed #}
+                            {% if req.collection_date %}
+                            {{ req.collection_date|date:"Y-m-d" }}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <td>
+                            {# Similarly for collection time #}
+                            {% if req.collection_time %}
+                            {{ req.collection_time|date:"h:i A" }}
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                        <td class="status-{{ req.status|lower }}">
+                            {{ req.status }}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7">You have not requested any books yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}

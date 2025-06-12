@@ -1,0 +1,96 @@
+{% extends "adminpanel/base.html" %}
+{% load static %}
+
+{% block title %}Admin Dashboard | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'adminpanel/css/view_students.css' %}">
+{% endblock extra_head %}
+{% block content %}
+
+<!-- Main Content -->
+<div class="admin-container">
+  <header class="admin-header">
+    <h1>Manage Students</h1>
+
+    <div class="admin-profile">
+      <div class="profile-info">
+        <!-- <h3>Librarian Panel</h3> -->
+        <!-- <p class="user-name">John Desuza <span class="online-status">Online</span></p> -->
+      </div>
+      <!-- <i class="fas fa-user-circle"></i> -->
+    </div>
+  </header>
+
+  <div class="dashboard-section">
+    <!-- <h2>Dashboard</h2> -->
+    <div class="filter-options">
+      <label class="checkbox-container">Student ID
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkbox-container">Student Name
+        <input type="checkbox" checked>
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkbox-container">Email Address
+        <input type="checkbox" checked>
+        <span class="checkmark"></span>
+      </label>
+      <label class="checkbox-container">Phone
+        <input type="checkbox" checked>
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <div class="table-actions">
+      <!-- <a href="{% url 'add_student' %}" class="add-btn"><i class="fas fa-user-plus"></i> Add Student</a> -->
+    </div>
+
+    <div class="table-container">
+      <table class="students-table">
+        <tbody>
+          <thead>
+            <tr>
+              <th>Admission Number</th>
+              <th>Name</th>
+              <th>Email Address</th>
+              <th>Phone</th>
+              <!-- <th>Street Address</th> -->
+              <th>Course</th>
+              <th>Admission Year</th>
+              <th>Passout Year</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          {% for student in students %}
+          <tr>
+            <td>{{ student.admission_number }}</td>
+            <td>{{ student.full_name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.phone_number }}</td>
+            <!-- <td>{{ student.address|default:"-" }}</td> -->
+            <td>{{ student.course }} {{student.department}}</td>
+            <td> {{ student.admission_year }}</td>
+            <td>{{ student.passout_year }}</td>
+            <td>
+              <a class="action-btn edit" href="{% url 'edit_student'  student.id %}"><i class="fas fa-edit"></i> Edit</a>
+              <button class="action-btn delete"><i class="fas fa-trash-alt"></i>Delete</button>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="9">No students found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block extra_js %}
+{% endblock extra_js %}

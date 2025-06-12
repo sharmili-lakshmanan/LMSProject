@@ -1,0 +1,99 @@
+
+/* Main Content Styles */.main-content {
+  padding: 20px;
+    margin-left: 250px; /* Adjusted for sidebar width */
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.main-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+nav {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.year-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.year-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  width: 300px;
+}
+
+.btn-save {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.years-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.years-table th,
+.years-table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.years-table th {
+  background-color: #e9ecef;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 6px 12px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.btn-edit {
+  background-color: #e67e22;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: relative;
+  }
+
+  .col-md-10 {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-3 {
+    flex: 1 1 100%;
+  }
+}

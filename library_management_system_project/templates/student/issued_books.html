@@ -1,0 +1,51 @@
+{% extends 'student/base.html' %}
+
+{% load static %}
+
+{% block title %}Student Dashboard | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'student/css/issued_books.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+
+
+
+<div class="p-6">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Issued Books</h2>
+  <div class="overflow-x-auto bg-white shadow rounded-lg">
+    <table class="min-w-full table-auto border border-gray-200">
+      <thead class="bg-indigo-600 text-white">
+        <tr>
+          <th class="px-4 py-3 text-left text-sm font-medium">Book ID</th>
+          <th class="px-4 py-3 text-left text-sm font-medium">Book Name</th>
+          <th class="px-4 py-3 text-left text-sm font-medium">Issue Date</th>
+          <th class="px-4 py-3 text-left text-sm font-medium">Due Date</th>
+          <th class="px-4 py-3 text-left text-sm font-medium">Return Status</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 text-gray-700">
+        <tr>
+          <td class="px-4 py-3 text-sm">BK00123</td>
+          <td class="px-4 py-3 text-sm">Introduction to Algorithms</td>
+          <td class="px-4 py-3 text-sm">2025-05-01</td>
+          <td class="px-4 py-3 text-sm">2025-06-01</td>
+          <td class="px-4 py-3 text-sm">
+            <span class="inline-block bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Returned</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 text-sm">BK00456</td>
+          <td class="px-4 py-3 text-sm">Clean Code</td>
+          <td class="px-4 py-3 text-sm">2025-05-10</td>
+          <td class="px-4 py-3 text-sm">2025-06-10</td>
+          <td class="px-4 py-3 text-sm">
+            <span class="inline-block bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Overdue</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %}

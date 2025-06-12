@@ -1,0 +1,82 @@
+{% extends "adminpanel/base.html" %}
+{% load static %}
+
+{% block title %}Edit Student | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'adminpanel/css/edit_student.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<main class="main-content">
+    <header class="content-header">
+        <h1>Edit Student Details</h1>
+    </header>
+
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="full_name">Full Name</label>
+                    <input type="text" name="full_name" id="full_name" value="{{ students.full_name }}">
+                </div>
+                <div class="form-group">
+                    <label for="admission_number">Admission Number</label>
+                    <input type="text" name="admission_number" id="admission_number" value="{{ students.admission_number }}">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" value="{{ students.email }}">
+                </div>
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <input type="text" name="course" id="course" value="{{ students.course }}">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <!-- <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="number" name="year" id="year" value="{{ students.year }}">
+                </div> -->
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" name="department" id="department" value="{{ students.department }}">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="admission_year">Admission Year</label>
+                    <input type="number" name="admission_year" id="admission_year" value="{{ students.admission_year }}">
+                </div>
+                <div class="form-group">
+                    <label for="passout_year">Passout Year</label>
+                    <input type="number" name="passout_year" id="passout_year" value="{{ students.passout_year }}">
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="phone_number">Phone Number</label>
+                <input type="text" name="phone_number" id="phone_number" value="{{ students.phone_number }}">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Student
+                </button>
+                <button type="reset" class="btn btn-secondary">
+                    <i class="fas fa-undo"></i> Reset Form
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock content %}
+
+{% block extra_js %}
+{% endblock extra_js %}

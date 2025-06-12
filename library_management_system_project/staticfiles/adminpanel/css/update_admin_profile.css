@@ -1,0 +1,69 @@
+
+/* Main Content Area */
+.main-content {
+  margin-left: 250px; /* Same as sidebar width */
+  padding: 40px 30px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+.main-content h1,
+.main-content h2,
+.main-content h3 {
+  color: #1e293b;
+  margin-bottom: 20px;
+}
+
+.main-content .card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 20px 25px;
+  margin-bottom: 30px;
+}
+
+.main-content form label {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.main-content form input,
+.main-content form select,
+.main-content form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.main-content form input:focus,
+.main-content form select:focus,
+.main-content form textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+}
+
+.main-content .btn {
+  background-color: #1e293b;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.main-content .btn:hover {
+  background-color: #1d4ed8;
+}
+

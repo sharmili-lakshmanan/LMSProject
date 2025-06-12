@@ -1,0 +1,64 @@
+
+
+/* Main Content Styles */
+
+.main-content {
+  flex: 1; 
+  padding: 20px;
+    /* margin-left: 250px; Adjust for sidebar width */
+  background: #f9f9f9;
+}
+.course-form {
+  margin-bottom: 20px;
+}
+.course-form input {
+  padding: 10px;
+  width: 300px;
+}
+.btn {
+  padding: 10px 15px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.btn-primary {
+  background: #007bff;
+}
+.btn-edit {
+  background: #28a745;
+}
+.btn-delete {
+  background: #dc3545;
+}
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.course-table th, .course-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: relative;
+  }
+
+  .col-md-10 {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-3 {
+    flex: 1 1 100%;
+  }
+}

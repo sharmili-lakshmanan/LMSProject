@@ -1,0 +1,92 @@
+
+
+
+/* Main Content Styles */
+
+.main-content {
+  padding: 20px;
+  /* margin-left: 250px; Adjusted for sidebar width */
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.main-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+nav {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-bar input,
+.filter-bar select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  width: 180px;
+}
+
+.fines-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.fines-table th,
+.fines-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.fines-table th {
+  background-color: #e9ecef;
+}
+
+.action-btn {
+  background-color: #f39c12;
+  border: none;
+  padding: 6px 10px;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.total-fine {
+  color: green;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: relative;
+  }
+
+  .col-md-10 {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .col-md-3 {
+    flex: 1 1 100%;
+  }
+}

@@ -1,0 +1,57 @@
+{% extends 'student/base.html' %}
+{% load static %}
+
+{% block title %}Borrowed Books | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'student/css/borrowed_books.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container ">
+    <h4 class="mb-3">Borrowed Books</h4>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>Book ID</th>
+                    <th>Book Name</th>
+                    <th>Borrowed Date</th>
+                    <th>Return Date</th>
+                    <th>Return Status</th>
+                    <th>Fines</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BK00123</td>
+                    <td>Introduction to Algorithms</td>
+                    <td>2025-05-10</td>
+                    <td>2025-05-24</td>
+                    <td><span class="badge bg-success">Returned</span></td>
+                    <td>Rs 0.00</td>
+                </tr>
+                <tr>
+                    <td>BK00245</td>
+                    <td>The History of Time</td>
+                    <td>2025-05-18</td>
+                    <td>2025-06-01</td>
+                    <td><span class="badge bg-warning text-dark">Due Soon</span></td>
+                    <td>Rs 0.00</td>
+                </tr>
+                <tr>
+                    <td>BK00376</td>
+                    <td>Data Science Essentials</td>
+                    <td>2025-05-01</td>
+                    <td>2025-05-15</td>
+                    <td><span class="badge bg-danger">Overdue</span></td>
+                    <td>Rs 5.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+{% endblock scripts %}

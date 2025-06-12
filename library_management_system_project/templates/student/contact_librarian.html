@@ -1,0 +1,82 @@
+{% extends 'student/base.html' %}
+
+{% load static %}
+
+{% block title %}Student Dashboard | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'student/css/contact_librarian.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+
+<!-- Contact Librarian Form -->
+<section class="contact-librarian-form">
+  <h2>Contact a Librarian</h2>
+  <form  method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="studentName">Your Name</label>
+      <input type="text" id="studentName" name="studentName" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label>Preferred Contact Method</label>
+      <div class="radio-options">
+        <label><input type="radio" name="contactMethod" value="email" checked> Email</label>
+        <label><input type="radio" name="contactMethod" value="phone"> Phone Call</label>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="attachment">Attach a File (optional)</label>
+      <input type="file" id="attachment" name="attachment">
+    </div>
+    
+    <div class="form-buttons">
+      <button type="reset" class="reset-btn">Reset</button>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </div>
+  </form>
+</section>
+<!-- Success Popup -->
+<div id="successPopup" class="popup" style="display: none;">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <p>Your message has been sent successfully!</p>
+  </div>
+</div>
+
+{% endblock content %}
+{% block scripts %}
+{% if success %}
+<script>
+  window.onload = function() {
+    document.getElementById('successPopup').style.display = 'flex';
+  };
+</script>
+{% endif %}
+
+<script>
+  function closePopup() {
+    document.getElementById('successPopup').style.display = 'none';
+  }
+</script>
+
+
+{% endblock scripts %}

@@ -1,0 +1,88 @@
+.sidebar {
+  width: 260px;
+  background-color: #003554;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+  padding-top: 1rem;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar .sidebar-header {
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: #006494;
+  color: white;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  border-bottom: 1px solid #00416d;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1.2rem;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+  background-color: #0582ca;
+}
+
+.sidebar-menu i {
+  margin-right: 12px;
+}
+
+.sidebar-menu .submenu {
+  display: none;
+  background-color: #00416d;
+}
+
+.sidebar-menu .submenu li a {
+  padding-left: 2.5rem;
+  font-size: 0.9rem;
+}
+
+.menu-toggle {
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1100;
+  background: #003554;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  font-size: 1.2rem;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  .sidebar-toggle-btn {
+    display: block;
+  }
+}

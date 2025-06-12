@@ -1,0 +1,84 @@
+
+
+
+/* Main Content Styles */
+
+.issue-book-container {
+  display: flex;
+  gap: 2rem;
+    margin-left: 250px; /* Adjust for sidebar width */
+  background: #f8f9fa;
+  padding: 2rem;
+}
+
+.left-panel {
+  flex: 1;
+  text-align: center;
+}
+
+.book-cover {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.right-panel {
+  flex: 2;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.issue-book-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.issue-book-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.book-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  background: #f1f1f1;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  gap: 0.5rem;
+  font-size: 14px;
+}
+
+.user-info-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 14px;
+  align-items: center;
+}
+
+.profile-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn-issue {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  float: right;
+}

@@ -1,0 +1,172 @@
+{% extends "core/base.html" %}
+
+{% load static %}
+
+{% block title %}Login | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'core/css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- <div class="container">
+        <div class="login-container">
+            <h3 class="text-center mb-4">Library Login</h3>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="user_id" class="form-label">User ID / Library ID</label>
+                    <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Enter your ID" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password"
+                        required>
+                </div>
+
+                <div class="mb-3 text-end">
+                    <a href="{% url 'otp_verification' %}" class="text-decoration-none">Forgot Password?</a>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div> -->
+
+<div class="container">
+    <div class="login-container">
+        <h3 class="text-center mb-4">Library Login</h3>
+
+        <!-- {% if messages %}
+        <div class="mt-3">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %} -->
+
+        <!-- <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="e.g. user@example.com"
+                    required autofocus>
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" id="password" name="password"
+                    placeholder="Enter your password" required>
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">👁️</button>
+            </div>
+
+            <div class="mb-3 text-end">
+                <a href="{% url 'otp_verification' %}" class="text-decoration-none">Forgot Password?</a>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div class="mt-3 text-center">
+                <span>Don't have an account? </span>
+                <a href="{% url 'sign_up' %}" class="text-decoration-none">Sign Up</a>
+            </div>
+
+        </form> -->
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Email Field -->
+            <!-- <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" id="email"
+                    name="email" placeholder="e.g. user@example.com" value="{{ form.email.value|default:'' }}" required
+                    autofocus>
+                {% if form.email.errors %}
+                <div class="invalid-feedback" style="font-size: 0.875em;">
+                    {{ form.email.errors.0 }}
+                </div>
+                {% endif %}
+            </div> -->
+
+
+            <!-- Password Field -->
+            <!-- <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control {% if form.password.errors %}is-invalid{% endif %}"
+                        id="password" name="password" placeholder="Enter your password" required>
+                    <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">👁️</button>
+                </div>
+                {% if form.password.errors %}
+                <div class="invalid-feedback" style="font-size: 0.875em;">
+                    {{ form.password.errors.0 }}
+                </div>
+                {% endif %}
+            </div> -->
+            <!-- Email Field -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control {% if field_errors.email %}is-invalid{% endif %}" id="email"
+                    name="email" placeholder="e.g. user@example.com" value="{{ form_data.email|default:'' }}" required
+                    autofocus>
+                {% if field_errors.email %}
+                <div class="invalid-feedback">
+                    {{ field_errors.email }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control {% if field_errors.password %}is-invalid{% endif %}"
+                        id="password" name="password" placeholder="Enter your password" required>
+                    <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">👁️</button>
+                </div>
+                {% if field_errors.password %}
+                <div class="invalid-feedback">
+                    {{ field_errors.password }}
+                </div>
+                {% endif %}
+            </div>
+
+
+            
+            <!-- Forgot Password -->
+            <div class="mb-3 text-end">
+                <a href="{% url 'otp_verification' %}" class="text-decoration-none">Forgot Password?</a>
+            </div>
+
+            <!-- Login Button -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+
+            <!-- Sign Up Option -->
+            <div class="mt-3 text-center">
+                <span>Don't have an account? </span>
+                <a href="{% url 'sign_up' %}" class="text-decoration-none">Sign Up</a>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function togglePassword() {
+        const input = document.getElementById("password");
+        input.type = input.type === "password" ? "text" : "password";
+    }
+</script>
+
+{% endblock %}

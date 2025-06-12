@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  {%load static %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}| EduShelf | Explore Knowledge{% endblock title %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+   <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+   {% block extra_head %}
+   <!--exxtra style links in the head-->
+   {% endblock %}
+
+</head>
+<body>
+
+
+<!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
+  <div class="container-navbar">
+    <a class="navbar-brand fw-bold text-white" href="{% url 'index' %}">EduShelf</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'index' %}">Home</a></li>
+        <!-- <li class="nav-item"><a class="nav-link text-white" href="{% url 'catalog' %}">Catalog</a></li> -->
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'about' %}">About</a></li>
+        <!-- <li class="nav-item"><a class="nav-link text-white" href="{% url 'login' %}">Login</a></li> -->
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'login' %}">Login</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{%block content %}{% endblock content %}
+
+<!-- footer section
+<footer class="soda-style-footer">
+  <div class="container-foot soda-footer-grid">
+    <div class="soda-logo">
+      <div class="logo-box">EDU<br>SHELF</div>
+    </div>
+
+    <div class="soda-description">
+      <p>
+        EduShelf is a modern digital platform for library access, knowledge sharing, and research tools.
+        Designed to empower students, educators, and lifelong learners in a connected world.<br>
+        <strong>Learn more at <a href="https://edushelf.org">www.edushelf.org</a></strong>.
+      </p>
+    </div>
+
+    <div class="soda-cta-social">
+      <a href="#" class="cta-link">LINKS</a>
+      <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-x"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="footer-divider" />
+
+  <div class="footer-bottom-text">
+    <p><strong>© EduShelf 2025. All rights reserved.</strong></p>
+    <p class="footer-disclaimer">
+      <em>The views expressed on this platform are those of the contributors and do not necessarily reflect the views of EduShelf or its affiliates.</em>
+    </p>
+  </div>
+</footer> -->
+<!-- Modern EduShelf Footer -->
+<footer class="edushelf-footer">
+  <div class="footer-container">
+    <div class="footer-top">
+      <!-- Logo and Description -->
+      <div class="footer-brand">
+        <div class="brand-logo">EDU<br>SHELF</div>
+        <p>
+          EduShelf is a digital gateway to your academic resources. Explore, learn, and grow with curated content and collaborative tools for modern learners.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'login' %}">Library</a></li>
+          <!-- <li><a href="#">Research</a></li>
+          <li><a href="#">Support</a></li> -->
+        </ul>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="footer-social">
+        <h4>Connect</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
+          <a href="https://twitter.com"><i class="bi bi-twitter"></i></a>
+          <a href="https://www.linkedin.com"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 EduShelf. All rights reserved.</p>
+      <p class="disclaimer">
+        <em>The opinions shared on EduShelf are those of individual contributors and do not represent EduShelf or affiliated institutions.</em>
+      </p>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% block extra_js %}{% endblock extra_js %}
+</body>
+</html>

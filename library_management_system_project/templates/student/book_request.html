@@ -1,0 +1,55 @@
+{% extends 'student/base.html' %}
+
+{% load static %}
+
+{% block title %}Student Dashboard | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'student/css/book_request.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+
+      <section class="dashboard">
+        <h3>Submit Book Request</h3>
+        <form class="request-form">
+          <label>Book Name *</label>
+          <input type="text" placeholder="Full Book Name...">
+
+          <!-- <label>Google/Amazon Book URL</label>
+          <input type="url" placeholder="Book URL if any"> -->
+
+          <label>Note *</label>
+          <textarea placeholder="Why you require this book?"></textarea>
+
+          <button type="submit"><i class="fa fa-paper-plane"></i> Submit Request</button>
+        </form>
+
+        <table class="request-table">
+          <thead>
+            <tr>
+              <th>Book Name</th>
+              <!-- <th>URL</th> -->
+              <!-- <th>Description</th> -->
+              <th>Book ID</th>
+              <!-- <th>Likes</th> -->
+              <th>Added On</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SQL For Dummies</td>
+              <!-- <td><a href="#">Visit</a></td> -->
+              <!-- <td>Kindly get this book as requested by Prof. Stefen. Need it urgently as semesters are soon.</td> -->
+              <td>#0045</td>
+              <td>1</td>
+              <td>2017-12-30</td>
+              <!-- <td><button class="like-btn"><i class="fa fa-thumbs-up"></i></button></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+{% endblock content %}
+        

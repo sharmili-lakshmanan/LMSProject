@@ -1,0 +1,72 @@
+
+
+.request-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.request-form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+.request-form input,
+.request-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.request-form button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.request-form button:hover {
+  background-color: #005fa3;
+}
+
+.request-table {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.request-table th,
+.request-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 14px;
+}
+
+.request-table th {
+  background-color: #f0f0f0;
+}
+
+.like-btn {
+  background-color: #00c853;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+}
+.dashboard{
+  margin-left: 350px;
+      position: absolute;
+    top: 60px;
+}
+
+h3{
+  margin-top: 30px;
+}

@@ -1,0 +1,180 @@
+
+/* Container for the form *
+#auth-container {
+  background-color: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 500px;
+  margin-top: 100px;
+}
+
+/* Form title *
+form h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+/* Input and Select elements *
+form input,
+form select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Focus styling *
+form input:focus,
+form select:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2);
+  outline: none;
+}
+
+/* Labels *
+form label {
+  display: block;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 0.2rem;
+  font-weight: 500;
+}
+
+/* Checkbox and label *
+form label input[type="checkbox"] {
+  margin-right: 0.5rem;
+  transform: scale(1.1);
+}
+
+/* Submit Button *
+form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2575fc;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #1a5edb;
+}
+
+/* Responsive behavior *
+@media (max-width: 600px) {
+  #auth-container {
+    padding: 1.5rem;
+  }
+
+  form h2 {
+    font-size: 1.5rem;
+  }
+}*/
+
+/* sign_up.css */
+
+/* Variables for color palette */
+:root {
+    --primary-color: #005f73;
+    --secondary-color: #0a9396;
+    --accent-color: #94d2bd;
+    --bg-color: #f0f4f8;
+    --text-color: #102a43;
+    --error-color: #d90429;
+}
+
+/* body {
+    background-color: var(--bg-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    min-height: 100vh;
+    padding-top: 40px;
+} */
+
+/* Card styling */
+.card {
+  margin-top: 100px;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Form styling */
+.form-label {
+    font-weight: 600;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 95, 115, 0.25);
+}
+
+.form-check-label a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.form-check-label a:hover {
+    text-decoration: underline;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Custom input feedback */
+#course-preview {
+    background-color: #f8f9fa;
+    font-style: italic;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+    .card {
+        padding: 20px 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 0.95rem;
+    }
+}

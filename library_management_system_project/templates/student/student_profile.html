@@ -1,0 +1,192 @@
+{% extends 'student/base.html' %}
+{% load static %}
+
+{% block title %}Student Profile | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'student/css/student_profile.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="main-content p-4 ">
+    <form class="card p-4">
+        <h4>Edit Library Profile</h4>
+        <hr />
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Name</label>
+                <input type="text" class="form-control" value="{{ full_name }}" >
+            </div>
+            <div class="col-md-6">
+                <label>Email</label>
+                <input type="email" class="form-control" value="{{ email }}" >
+            </div>
+            
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Mobile</label>
+                <input type="text" class="form-control" value="{{ phone_number }}" >
+            </div>
+            <div class="col-md-6">
+                <label>Course</label>
+                <input type="text" class="form-control" value="{{ course }}" readonly>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Department</label>
+                <input type="text" class="form-control" value="{{ department }}" readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Membership</label>
+                <select class="form-select">
+                    <option selected>UG Student</option>
+                    <option>PG Student</option>
+                    <!-- <option>PhD Scholar</option> -->
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Admission Year</label>
+                <input type="text" class="form-control" value="{{ admission_year }}" readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Passout Year</label>
+                <input type="text" class="form-control" value="{{ passout_year }}" readonly>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Total Books Borrowed</label>
+                <input type="number" class="form-control" value="nil" readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Current Books</label>
+                <input type="number" class="form-control" value="nil" readonly>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Joined Date</label>
+                <input type="date" class="form-control" value="2022-09-01" readonly>
+            </div>
+            <div class="col-md-6">
+                <label>Fine Balance (₹)</label>
+                <input type="text" class="form-control" value="0.00" readonly>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+    </form>
+
+    <!-- Right Profile Card -->
+    <div class="col-md-3 p-4">
+        <div class="profile-card text-center p-3">
+            <img src="{% static 'student/images/prof.avif' %}" alt="Profile" class="profile-photo mb-3">
+            <h6>{{user_id}}</h6>
+            <p class="text-muted">{{ email }}</p>
+            <!-- <button class="btn btn-outline-secondary btn-sm">Change Photo</button> -->
+            <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#photoModal">
+                Change Photo
+            </button>
+
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+<!-- Photo Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1" aria-labelledby="photoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="photoModalLabel">Update Profile Picture</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="stopCamera()"></button>
+            </div>
+            <div class="modal-body text-center">
+                <!-- Webcam Preview -->
+                <video id="cameraPreview" autoplay playsinline width="100%"
+                    style="display: none; border-radius: 10px;"></video>
+
+                <!-- Image Upload Preview -->
+                <img id="uploadedImagePreview" src="" class="img-fluid rounded"
+                    style="display: none; max-height: 300px; margin-top: 10px;" />
+
+                <div class="d-grid gap-2 mt-3">
+                    <button class="btn btn-outline-primary" onclick="startCamera()">📷 Capture Image</button>
+                    <input type="file" id="uploadInput" accept="image/*" class="form-control"
+                        onchange="previewUpload()" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="savePhoto()">Save Image</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal" onclick="stopCamera()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+
+<script>
+
+
+    let video = document.getElementById('cameraPreview');
+    let uploadedImage = document.getElementById('uploadedImagePreview');
+    let stream;
+
+    function startCamera() {
+        uploadedImage.style.display = "none";
+        video.style.display = "block";
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(s => {
+                stream = s;
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                alert("Could not access the camera.");
+            });
+    }
+
+    function stopCamera() {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+        }
+        video.style.display = "none";
+    }
+
+    function previewUpload() {
+        const input = document.getElementById('uploadInput');
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                uploadedImage.src = e.target.result;
+                uploadedImage.style.display = "block";
+                stopCamera();
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function savePhoto() {
+        if (video.style.display === "block") {
+            alert("Captured image (would be sent to backend).");
+        } else if (uploadedImage.style.display === "block") {
+            alert("Uploaded image (would be sent to backend).");
+        } else {
+            alert("No image selected.");
+        }
+
+        const modal = bootstrap.Modal.getInstance(document.getElementById('photoModal'));
+        modal.hide();
+        stopCamera();
+    }
+
+
+</script>
+
+{% endblock scripts %}

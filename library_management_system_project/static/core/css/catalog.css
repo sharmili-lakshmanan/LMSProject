@@ -1,0 +1,58 @@
+/* Base Colors */
+:root {
+  --primary-blue: rgba(0, 0, 0, 0.7);
+  --accent-orange: #00bcd4;
+  --background-light: #F4F4F4;
+  --text-dark: #333333;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: var(--background-light);
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-dark);
+}
+
+/* .custom-navbar {
+  background-color: var(--primary-blue);
+} */
+
+.section-title {
+  color: black;
+}
+
+.book-card {
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  transition: transform 0.2s ease-in-out;
+  background-color: white;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+}
+
+.book-cover {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.btn-accent {
+  background-color: var(--accent-orange);
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn-accent:hover {
+  background-color: #e55e00;
+  color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 20px;
+}

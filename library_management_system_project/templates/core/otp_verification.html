@@ -1,0 +1,111 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}Catalog | EduShelf{% endblock title %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'core/css/otp_verification.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- <div class="container-main">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card p-4">
+        <div class="card-body">
+          <h3 class="text-center mb-4">Reset Your Password</h3>
+          <p class="text-center text-muted">Enter your email and we’ll send you a link to reset your password.</p>
+          <form action="/reset-password" method="POST">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" required/>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Send Reset Link</button>
+            </div>
+          </form>
+          <div class="text-center mt-3">
+            <a href="{% url 'login' %}">Back to Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container mt-5 pt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card p-4">
+        <div class="card-body">
+          <h3 class="text-center mb-3">Reset Your Password</h3>
+
+          <form id="verifyForm">
+            <!-- <div class="mb-3">
+                <label for="user_id" class="form-label">User ID</label>
+                <input type="text" id="user_id" name="user_id" class="form-control" required>
+              </div> -->
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" id="email" name="email" class="form-control" required>
+              <div id="verify-message" class="form-text mt-1"></div>
+            </div>
+
+            <div class="d-grid">
+              <button type="button" id="verifyBtn" class="btn btn-primary">Send OTP</button>
+            </div>
+          </form>
+
+          <form id="otpForm" class="mt-4 d-none">
+            <div class="mb-3">
+              <label for="otp" class="form-label">Enter OTP</label>
+              <input type="text" id="otp" name="otp" class="form-control" required>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Verify OTP</button>
+            </div>
+          </form>
+
+          <div class="text-center mt-3">
+            <a href="{% url 'login' %}">Back to Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+{% block extra_js %}
+<script>
+  document.getElementById('verifyBtn').addEventListener('click', function () {
+    const userId = document.getElementById('user_id').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const messageBox = document.getElementById('verify-message');
+
+    // TODO: Replace this fake check with actual backend AJAX call
+    if (email === 'sharmili@gmail.com') {
+      messageBox.textContent = '✔ Verified email';
+      messageBox.style.color = 'limegreen';
+      document.getElementById('otpForm').classList.remove('d-none');
+    } else {
+      messageBox.textContent = '✘ User ID and email do not match';
+      messageBox.style.color = 'red';
+      document.getElementById('otpForm').classList.add('d-none');
+    }
+  });
+
+  document.getElementById('otpForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const otp = document.getElementById('otp').value.trim();
+    if (otp === '123456') {
+      alert('OTP Verified! You can now reset your password.');
+      // Redirect or show password reset form
+      window.location.href = 'change_password.html';
+    } else {
+      alert('Incorrect OTP.');
+    }
+  });
+</script>
+<!-- <script src="{% static 'core/js/reset_password.js' %}"></script> -->
+{% endblock extra_js %}

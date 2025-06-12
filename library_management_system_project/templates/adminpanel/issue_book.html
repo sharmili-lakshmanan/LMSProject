@@ -1,0 +1,56 @@
+
+{% extends "adminpanel/base.html" %}
+{% load static %}
+
+{% block title %}Admin Dashboard | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'adminpanel/css/issue_book.css' %}">
+{% endblock extra_head %}
+{% block content %}
+<!---main content-->
+
+<div class="issue-book-container">
+  <div class="left-panel">
+    <img src="{% static 'adminpanel/images/issue book.jpeg' %}" alt="Book Cover" class="book-cover">
+  </div>
+
+  <div class="right-panel">
+    <h2>Issue Books</h2>
+
+    <form class="issue-book-form">
+      <label for="book-no">Book No</label>
+      <input type="text" id="book-no" value="2739557" readonly>
+
+      <label for="book-title">Book Title</label>
+      <input type="text" id="book-title" value="MORE Electronic Gadgets for the Evil Genius" readonly>
+
+      <div class="book-info-grid">
+        <div><strong>Total Qty</strong><br>2</div>
+        <div><strong>Current Available</strong><br>1</div>
+        <div><strong>Borrowed</strong><br>1</div>
+        <div><strong>Price</strong><br>Rs. 400</div>
+        <div><strong>ISBN</strong><br>0071483462</div>
+      </div>
+
+      <label for="user-id">User Id</label>
+      <input type="text" id="user-id" value="1002" readonly>
+
+      <label for="name">Name</label>
+      <input type="text" id="name" value="Nancy Maynard" readonly>
+
+      <div class="user-info-grid">
+        <div class="profile-img"><img src="user-photo.jpg" alt="User Photo"></div>
+        <div><strong>Phone</strong><br>757-412-6639</div>
+        <div><strong>Email</strong><br>nancy@gmail.com</div>
+        <div><strong>Address</strong><br>4736 Murry Street</div>
+      </div>
+
+      <button type="submit" class="btn-issue">Issue book</button>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+{% endblock extra_js %}

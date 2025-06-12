@@ -1,0 +1,114 @@
+
+/* Table Styles */
+
+/* Container Padding */
+.p-6 {
+  padding: 1.5rem;
+  position: absolute;
+  top: 60px;
+  left: 300px;
+  width: 965px;
+}
+
+/* Title */
+.text-2xl {
+  font-size: 1.5rem;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.text-gray-800 {
+  color: #1f2937;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+/* Table Container */
+.overflow-x-auto {
+  overflow-x: auto;
+}
+.bg-white {
+  background-color: #ffffff;
+}
+.shadow {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+/* Table Styles */
+.min-w-full {
+  min-width: 100%;
+}
+.table-auto {
+  table-layout: auto;
+}
+.border {
+  border: 1px solid #e5e7eb;
+}
+
+/* Table Head */
+.bg-indigo-600 {
+  background-color: #2e3d49;
+}
+.text-white {
+  color: #ffffff;
+}
+.text-left {
+  text-align: left;
+}
+.text-sm {
+  font-size: 0.875rem;
+}
+.font-medium {
+  font-weight: 500;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Table Body */
+.divide-y > * + * {
+  border-top: 1px solid #e5e7eb;
+}
+.text-gray-700 {
+  color: #374151;
+}
+
+/* Status Tags */
+.inline-block {
+  display: inline-block;
+}
+.bg-green-100 {
+  background-color: #d1fae5;
+}
+.text-green-800 {
+  color: #065f46;
+}
+.bg-red-100 {
+  background-color: #fee2e2;
+}
+.text-red-800 {
+  color: #991b1b;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.rounded {
+  border-radius: 0.25rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+}
