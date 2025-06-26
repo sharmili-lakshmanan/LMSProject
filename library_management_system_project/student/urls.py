@@ -12,5 +12,5 @@ urlpatterns = [
     path('requested_books/', views.requested_books, name='requested_books'),
     path('student_profile/', views.student_profile, name='student_profile'),
     path('borrowed_books/', views.borrowed_books, name='borrowed_books'),
-    path('contact_success/',views.contact_success,name='contact_success'),
+    # path('contact_success/',views.contact_success,name='contact_success'),
 ]

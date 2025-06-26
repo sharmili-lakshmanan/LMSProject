@@ -4,7 +4,7 @@
 /* General Layout */
 .content-wrapper {
   padding: 20px;
-  margin-left:250px; /* Sidebar width */
+  /* margin-left:250px; Sidebar width */
   background-color: #f4f6f9;
   min-height: 100vh;
   color: #333;

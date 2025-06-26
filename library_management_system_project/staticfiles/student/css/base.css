@@ -135,14 +135,16 @@
 }
 
 /* Topbar */
+/* nav{
+  position: fixed;
+} */
 .navbar {
     background-color: #003366;
     color: white;
     height: 55px;
-    position: fixed;
-    top: 0;
+    /* top: 0;
     left: 0;
-    right: 0;
+    right: 0; */
     z-index: 1055;
     display: flex;
     align-items: center;
@@ -197,3 +199,4 @@
         padding-top: 100px;
     }
 }
+

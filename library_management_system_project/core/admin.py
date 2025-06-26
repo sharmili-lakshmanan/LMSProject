@@ -65,3 +65,5 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('admission_number',)
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+

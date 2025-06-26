@@ -1,4 +1,3 @@
-
 {% extends "adminpanel/base.html" %}
 {% load static %}
 
@@ -7,46 +6,68 @@
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'adminpanel/css/issue_book.css' %}">
 {% endblock extra_head %}
+
 {% block content %}
 <!---main content-->
 
 <div class="issue-book-container">
   <div class="left-panel">
-    <img src="{% static 'adminpanel/images/issue book.jpeg' %}" alt="Book Cover" class="book-cover">
+    {% if book_request.book.cover_image %}
+      <img src="{{ book_request.book.cover_image.url }}" alt="Book Cover" class="book-cover">
+    {% else %}
+      <img src="{% static 'adminpanel/images/issue book.jpeg' %}" alt="Book Cover" class="book-cover">
+    {% endif %}
   </div>
 
   <div class="right-panel">
     <h2>Issue Books</h2>
 
-    <form class="issue-book-form">
+    <form class="issue-book-form" method="post">
+      {% csrf_token %}
       <label for="book-no">Book No</label>
-      <input type="text" id="book-no" value="2739557" readonly>
+      <input type="text" id="book-no" value="{{ book_request.book.book_id }}" readonly>
 
       <label for="book-title">Book Title</label>
-      <input type="text" id="book-title" value="MORE Electronic Gadgets for the Evil Genius" readonly>
+      <input type="text" id="book-title" value="{{ book_request.book.title }}" readonly>
 
       <div class="book-info-grid">
-        <div><strong>Total Qty</strong><br>2</div>
-        <div><strong>Current Available</strong><br>1</div>
+        <div><strong>Total Qty</strong><br>{{ book_request.book.quantity }}</div>
+        <div><strong>Current Available</strong><br>{{ book_request.book.quantity|add:"-1" }}</div>
         <div><strong>Borrowed</strong><br>1</div>
-        <div><strong>Price</strong><br>Rs. 400</div>
-        <div><strong>ISBN</strong><br>0071483462</div>
+        {# Adjust logic for available/borrowed as needed #}
       </div>
 
       <label for="user-id">User Id</label>
-      <input type="text" id="user-id" value="1002" readonly>
+      <input type="text" id="user-id" value="{{ book_request.student.user_id }}" readonly>
 
       <label for="name">Name</label>
-      <input type="text" id="name" value="Nancy Maynard" readonly>
+      <input type="text" id="name" value="{{ book_request.student.full_name }}" readonly>
 
       <div class="user-info-grid">
-        <div class="profile-img"><img src="user-photo.jpg" alt="User Photo"></div>
-        <div><strong>Phone</strong><br>757-412-6639</div>
-        <div><strong>Email</strong><br>nancy@gmail.com</div>
-        <div><strong>Address</strong><br>4736 Murry Street</div>
+        <div class="profile-img">
+          {% if book_request.student.profile_photo %}
+            <img src="{{ book_request.student.profile_photo.url }}" alt="User Photo">
+          {% else %}
+            <img src="{% static 'adminpanel/images/default_user.png' %}" alt="User Photo">
+          {% endif %}
+        </div>
+        <div><strong>Phone</strong><br>{{ book_request.student.phone_number }}</div>
+        <div><strong>Email</strong><br>{{ book_request.student.email }}</div>
       </div>
 
-      <button type="submit" class="btn-issue">Issue book</button>
+      <div class="mb-3">
+        <label for="collection_date" class="form-label">Collection Date</label>
+        <input type="date" class="form-control" name="collection_date" required>
+      </div>
+      <div class="mb-3">
+        <label for="collection_time" class="form-label">Collection Time</label>
+        <input type="time" class="form-control" name="collection_time" required>
+      </div>
+
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">Approve and Set Collection</button>
+        <a href="{% url 'book_requests_list' %}" class="btn btn-secondary">Back to Requests</a>
+      </div>
     </form>
   </div>
 </div>

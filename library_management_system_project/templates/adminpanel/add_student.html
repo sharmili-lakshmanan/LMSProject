@@ -5,163 +5,119 @@
 
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'adminpanel/css/add_student.css' %}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+  .is-invalid {
+    border-color: #dc3545 !important;
+  }
+  .form-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+</style>
 {% endblock extra_head %}
 
 {% block content %}
-<!-- Main Content -->
 <main class="main-content">
-    <header class="content-header">
-        <h1>Add Students</h1>
-        <div class="header-actions">
-            <button class="btn btn-primary">
-                <i class="fas fa-save"></i> Save Student
-            </button>
+  <header class="content-header">
+    <h1>Add Student</h1>
+  </header>
+
+  <div class="form-container">
+    <form method="POST" class="student-form" novalidate>
+      {% csrf_token %}
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="full_name">Full Name</label>
+          <input type="text" name="full_name" id="full_name" required class="form-control" placeholder="John Doe">
         </div>
-    </header>
+        <div class="form-group">
+          <label for="admission_number">Admission Number</label>
+          <input type="text" name="admission_number" id="admission_number" required class="form-control" placeholder="ADM2024-001">
+        </div>
+      </div>
 
-    <div class="form-container">
-        <!-- <form class="student-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" value="Roger">
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" value="Stefen">
-                        </div>
-                    </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" required class="form-control" placeholder="example@mail.com">
+        </div>
+        <div class="form-group">
+          <label for="course">Course</label>
+          <select name="course" id="course" required class="form-control">
+            <option disabled selected>Select Course</option>
+            <option value="bsc">B.Sc</option>
+            <option value="ba">B.A</option>
+            <option value="bcom">B.Com</option>
+            <option value="msc">M.Sc</option>
+            <option value="ma">M.A</option>
+            <option value="mcom">M.Com</option>
+          </select>
+        </div>
+      </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" value="r0ger007@gmail.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="course">Course Name</label>
-                            <select id="course">
-                                <option value="MCA" selected>MCA</option>
-                                <option value="B-Com">B-Com</option>
-                                <option value="Bio-TT">Bio-TT</option>
-                                <option value="BSc">BSc</option>
-                            </select>
-                        </div>
-                    </div>
+      <div class="form-row" id="year-wrapper" style="display: none;">
+        <div class="form-group">
+          <label for="year">Year</label>
+          <select name="year" id="year" required class="form-control">
+            <option disabled selected>Select Year</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="department">Department</label>
+          <input type="text" name="department" id="department" required class="form-control" placeholder="Mathematics">
+        </div>
+      </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="year">Year</label>
-                            <select id="year">
-                                <option value="1st Year">1st Year</option>
-                                <option value="2nd Year" selected>2nd Year</option>
-                                <option value="3rd Year">3rd Year</option>
-                                <option value="4th Year">4th Year</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" value="987654220">
-                        </div>
-                    </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="admission_year">Admission Year</label>
+          <input type="number" name="admission_year" id="admission_year" required class="form-control" placeholder="2023">
+        </div>
+        <div class="form-group">
+          <label for="passout_year">Passout Year</label>
+          <input type="number" name="passout_year" id="passout_year" required class="form-control" placeholder="2026">
+        </div>
+      </div>
 
-                    <div class="form-group full-width">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" value="K30, Agmc Market I, Phase II Sec 19, Agmc, Navi Mumbai">
-                    </div>
+      <div class="form-group full-width">
+        <label for="phone_number">Phone Number</label>
+        <input type="text" name="phone_number" id="phone_number" required class="form-control" placeholder="10-digit number">
+      </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" value="Mumbai">
-                        </div>
-                        <div class="form-group">
-                            <label for="state">State</label>
-                            <input type="text" id="state" value="Maharashtra">
-                        </div>
-                        <div class="form-group">
-                            <label for="zip">Zip</label>
-                            <input type="text" id="zip" value="400008">
-                        </div>
-                    </div>
+      <!-- Hidden fields for final course label -->
+      <input type="hidden" id="final-course-input" name="final_course">
+      <div class="form-group full-width">
+        <label>Course Label Preview</label>
+        <input type="text" id="course-preview" class="form-control" disabled>
+      </div>
 
-                    <div class="form-group full-width">
-                        <label for="notes">Notes</label>
-                        <textarea id="notes">Note</textarea>
-                    </div>
+      <div class="form-actions mt-3">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save"></i> Save Student
+        </button>
+        <button type="reset" class="btn btn-secondary">
+          <i class="fas fa-undo"></i> Reset Form
+        </button>
+      </div>
+    </form>
+  </div>
 
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary" onclick="saveStudent()">
-                            <i class="fas fa-save"></i> Save Student
-                        </button>
-                        <button type="reset" class="btn btn-secondary">
-                            <i class="fas fa-undo"></i> Reset Form
-                        </button>
-                    </div>
-                </form> -->
-        <form method="POST" class="student-form">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="full_name">Full Name</label>
-                    <input type="text" name="full_name" id="full_name" required>
-                </div>
-                <div class="form-group">
-                    <label for="admission_number">Admission Number</label>
-                    <input type="text" name="admission_number" id="admission_number" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="course">Course</label>
-                    <input type="text" name="course" id="course" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="year">Year</label>
-                    <input type="number" name="year" id="year" required>
-                </div>
-                <div class="form-group">
-                    <label for="department">Department</label>
-                    <input type="text" name="department" id="department" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="admission_year">Admission Year</label>
-                    <input type="number" name="admission_year" id="admission_year" required>
-                </div>
-                <div class="form-group">
-                    <label for="passout_year">Passout Year</label>
-                    <input type="number" name="passout_year" id="passout_year" required>
-                </div>
-            </div>
-
-            <div class="form-group full-width">
-                <label for="phone_number">Phone Number</label>
-                <input type="text" name="phone_number" id="phone_number" required>
-            </div>
-
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Save Student
-                </button>
-                <button type="reset" class="btn btn-secondary">
-                    <i class="fas fa-undo"></i> Reset Form
-                </button>
-            </div>
-        </form>
-
+  <!-- Bootstrap Toast for Validation -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="formToast" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toast-message">Validation message goes here</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
     </div>
+  </div>
 </main>
 {% endblock content %}
+
 {% block extra_js %}
 <script src="{% static 'adminpanel/js/add_student.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock extra_js %}

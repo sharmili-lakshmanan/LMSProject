@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'  # or your local time zone
 
 USE_I18N = True
 
@@ -143,4 +143,15 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_URL = reverse_lazy('login') 
+# Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# SMTP Configuration for Gmail
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sharmililakshmanan1@gmail.com'         # ✅ replace with your email
+EMAIL_HOST_PASSWORD = 'nzfm gxna boje fvym'   # ✅ replace with Gmail App Password
+
+DEFAULT_FROM_EMAIL = 'EduShelf <sharmililakshmanan1@gmail.com>'
 

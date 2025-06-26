@@ -1,7 +1,7 @@
 
 /* Main Content Styles */.main-content {
   padding: 20px;
-    margin-left: 250px; /* Adjusted for sidebar width */
+    /* margin-left: 250px; Adjusted for sidebar width */
   background-color: #f8f9fa;
   font-family: Arial, sans-serif;
 }

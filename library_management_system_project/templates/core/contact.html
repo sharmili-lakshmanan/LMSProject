@@ -1,6 +1,6 @@
 {% extends "core/base.html" %}
 {% load static %}
-{% block title %}Catalog | EduShelf{% endblock title %}
+{% block title %}Contact| EduShelf{% endblock title %}
   {% block extra_head %}
   <link rel="stylesheet" href="{% static 'core/css/contact.css' %}">
   {% endblock %}
@@ -11,7 +11,8 @@
     <h2>Contact Form</h2>
     <p>Get in touch with us!</p>
 
-    <form>
+    <form method="post">
+      {% csrf_token %}
       <div class="form-group">
         <label class="required">Name:</label>
         <div class="name-fields">
@@ -37,16 +38,13 @@
           <option value="">Please select</option>
           <option value="account">Account Issues</option>
           <option value="borrowing">Borrowing Questions</option>
-          <option value="technical">Technical Support</option>
+          <!-- <option value="technical">Technical Support</option> -->
           <option value="feedback">Feedback/Suggestions</option>
           <option value="other">Other</option>
         </select>
       </div>
 
-      <div class="form-group">
-        <label for="card-number" class="required">Library card number:</label>
-        <input type="text" id="card-number" name="card-number" required />
-      </div>
+     
 
       <div class="form-group">
         <label for="message">Please let us know your message:</label>

@@ -1,7 +1,7 @@
 
 /* Main Content Area */
 .main-content {
-  margin-left: 250px; /* Same as sidebar width */
+  /* margin-left: 250px; Same as sidebar width */
   padding: 40px 30px;
   background-color: #f5f7fa;
   min-height: 100vh;

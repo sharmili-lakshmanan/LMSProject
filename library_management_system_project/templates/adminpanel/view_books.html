@@ -1,4 +1,3 @@
-
 {% extends "adminpanel/base.html" %}
 {% load static %}
 
@@ -13,11 +12,11 @@
   <div class="page-header">
     <h1>View All Books</h1>
     <!-- <div class="breadcrumb">Home > Manage Books</div> -->
+    <div class="table-actions">
+      <a href="{% url 'add_book' %}" class="add-btn"><i class="fas fa-user-plus"></i> Add Book</a>
+    </div>
   </div>
 
-   <div class="table-actions">
-        <a href="{% url 'add_book' %}" class="add-btn"><i class="fas fa-user-plus"></i> Add Book</a>
-      </div>
 
 
   <!-- Book Table -->
@@ -25,109 +24,78 @@
     <table class="book-table">
       <thead>
         <tr>
-          <th>ISBN</th>
+          <th>BOOK Cover</th>
+          <th>BOOK ID</th>
           <th>Book Name</th>
-          <th>Department</th>
-          <th>Price</th>
-          <th>Qty</th>
+          <!-- <th>Department</th> -->
+          <!-- <th>Price</th> -->
+          <th>Category</th>
+          <th>Quantity</th>
           <th>Borrowed</th>
-          <th>Action</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
+        {% for book in books %}
         <tr>
-          <td>8131733092</td>
-          <td>Computer Fundamentals</td>
-          <td>Computer Science</td>
-          <td>400</td>
-          <td>5</td>
-          <td>0</td>
           <td>
-            <a class="btn-action view">👁 View</a>
-            <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
-            <a class="btn-action delete">🗑️ Delete</a>
+            {% if book.cover_image %}
+            <img src="{{ book.cover_image.url }}" alt="Book Cover" class="book-cover">
+            {% else %}
+            <img src="{% static 'adminpanel/images/default_book_cover.jpeg' %}" alt="Default Cover" class="book-cover">
+            {% endif %}
+          </td>
+          <td>{{ book.book_id }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.category }}</td>
+
+          <td>{{ book.quantity }}</td> <!-- Add quantity field if it exists -->
+          <td>
+            --
+          </td>
+          <td>
+            <!-- <a class="btn-action view">👁 View</a> -->
+            <a class="btn-action edit" href="{% url 'edit_book' book.book_id %}">✏️ Edit</a>
+            <!-- Delete Button to trigger modal -->
+            <button type="button" class="btn-action delete" data-bs-toggle="modal"
+              data-bs-target="#deleteModal{{ book.book_id }}">
+              🗑️ Delete
+            </button>
+
+            <!-- Delete Confirmation Modal -->
+            <div class="custom_modal fade" id="deleteModal{{ book.book_id }}" tabindex="-1"
+              aria-labelledby="deleteModalLabel{{ book.book_id }}" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel{{ book.book_id }}">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body">
+                    Are you sure you want to delete the book <strong>{{ book.title }}</strong>?
+                  </div>
+
+                  <div class="modal-footer">
+                    <form method="POST" action="{% url 'delete_book' book.book_id %}">
+                      {% csrf_token %}
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
           </td>
         </tr>
-        <!-- More rows can be added here -->
-
+        {% empty %}
         <tr>
-  <td>9780131103627</td>
-  <td>The C Programming Language</td>
-  <td>Computer Science</td>
-  <td>450</td>
-  <td>10</td>
-  <td>3</td>
-  <td>
-    <a class="btn-action view">👁 View</a>
-    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
-    <a class="btn-action delete">🗑️ Delete</a>
-  </td>
-</tr>
-<tr>
-  <td>9780262033848</td>
-  <td>Introduction to Algorithms</td>
-  <td>Computer Science</td>
-  <td>850</td>
-  <td>6</td>
-  <td>2</td>
-  <td>
-    <a class="btn-action view">👁 View</a>
-    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
-    <a class="btn-action delete">🗑️ Delete</a>
-  </td>
-</tr>
-<tr>
-  <td>9780199232765</td>
-  <td>Organic Chemistry</td>
-  <td>Chemistry</td>
-  <td>950</td>
-  <td>8</td>
-  <td>5</td>
-  <td>
-    <a class="btn-action view">👁 View</a>
-    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
-    <a class="btn-action delete">🗑️ Delete</a>
-  </td>
-</tr>
-<tr>
-  <td>9780321573513</td>
-  <td>Calculus: Early Transcendentals</td>
-  <td>Mathematics</td>
-  <td>780</td>
-  <td>7</td>
-  <td>4</td>
-  <td>
-    <a class="btn-action view">👁 View</a>
-    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
-    <a class="btn-action delete">🗑️ Delete</a>
-  </td>
-</tr>
-<tr>
-  <td>9780140449136</td>
-  <td>The Republic</td>
-  <td>Philosophy</td>
-  <td>300</td>
-  <td>4</td>
-  <td>0</td>
-  <td>
-    <a class="btn-action view">👁 View</a>
-    <a class="btn-action edit text-decoration-none" href="{% url 'edit_book' %}">✏️ Edit</a>
-    <a class="btn-action delete">🗑️ Delete</a>
-  </td>
-</tr>
-<tr>
-  <td>9780132350884</td>
-  <td>Clean Code</td>
-  <td>Software Engineering</td>
-  <td>600</td>
-  <td>9</td>
-  <td>1</td>
-  <td>
-    <a class="btn-action view">👁 View</a>
-    <a class="btn-action edit" href="{% url 'edit_book' %}">✏️ Edit</a>
-    <a class="btn-action delete">🗑️ Delete</a>
-  </td>
-</tr>
+          <td colspan="7">No books available.</td>
+        </tr>
+        {% endfor %}
 
       </tbody>
     </table>
@@ -138,4 +106,5 @@
 {% endblock content %}
 
 {% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock extra_js %}

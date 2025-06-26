@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book,ContactMessage
+from .models import ContactMessage,BookRequest,Book
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
@@ -29,3 +29,30 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
     list_display = ('student_name', 'email', 'subject', 'contact_method', 'submitted_at')
+    search_fields = ('student_name', 'email', 'subject')
+    list_filter = ('contact_method', 'submitted_at')
+
+
+
+@admin.register(BookRequest)
+class BookRequestAdmin(admin.ModelAdmin):
+    list_display = (
+        'student', 'book', 'status', 'requested_at', 'approved_at',
+        'collection_date', 'collection_time', 'collected_at'
+    )
+    list_filter = ('status', 'requested_at', 'collection_date')
+    search_fields = ('student__full_name', 'book__title', 'book__author')
+    readonly_fields = ('requested_at', 'approved_at', 'collection_deadline', 'collected_at')
+
+    fieldsets = (
+        (None, {
+            'fields': ('student', 'book', 'status', 'admin_notes', 'rejection_reason')
+        }),
+        ('Approval Info', {
+            'fields': ('approved_by', 'approved_at', 'collection_date', 'collection_time', 'collection_deadline')
+        }),
+        ('Collection Info', {
+            'fields': ('collected_at',)
+        }),
+    )
+

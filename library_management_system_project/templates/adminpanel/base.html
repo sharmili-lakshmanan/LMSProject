@@ -5,8 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{% block title %}Admin Dashboard | EduShelf{% endblock title %}</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Bootstrap CSS -->
+
   <link rel="stylesheet" href="{% static 'adminpanel/css/base.css' %}" />
   <style>
     body {
@@ -68,16 +73,13 @@
 <!-- Sidebar -->
 <div class="sidebar">
   <a href="{% url 'admin_dashboard' %}"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-
-  <!-- Manage Students -->
   <div class="dropdown">
-    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+    <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown">
       <i class="fas fa-users me-2"></i>Manage Students
     </a>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{% url 'view_students' %}">View Students</a></li>
       <li><a class="dropdown-item" href="{% url 'add_student' %}">Add Student</a></li>
-   
     </ul>
   </div>
 
@@ -89,11 +91,11 @@
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{% url 'view_books' %}">View Books</a></li>
       <li><a class="dropdown-item" href="{% url 'add_book' %}">Add Book</a></li>
-      <li><a class="dropdown-item" href="{% url 'edit_book' %}">Edit Book</a></li>
+   
     </ul>
   </div>
 
-  <a href="{% url 'manage_fines' %}"><i class="fas fa-money-bill-wave me-2"></i>Manage Fines</a>
+  <!-- <a href="{% url 'manage_fines' %}"><i class="fas fa-money-bill-wave me-2"></i>Manage Fines</a> -->
 
   <!-- Issue Books -->
   <div class="dropdown">
@@ -101,14 +103,14 @@
       <i class="fas fa-book-reader me-2"></i>Issue Books
     </a>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="{% url 'issue_book' %}">Issue Book</a></li>
+      <!-- <li><a class="dropdown-item" href="{% url 'issue_book' %}">Issue Book</a></li> -->
       <li><a class="dropdown-item" href="{% url 'view_issued_books' %}">View All Issued Books</a></li>
-      <li><a class="dropdown-item" href="{% url 'view_archived_books' %}">View All Archived Books</a></li>
+      <li><a class="dropdown-item" href="{% url 'book_availability' %}">View Book Availability</a></li>
     </ul>
   </div>
 
   <!-- Manage Settings -->
-  <div class="dropdown">
+  <!-- <div class="dropdown">
     <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
       <i class="fas fa-cogs me-2"></i>Manage Settings
     </a>
@@ -116,9 +118,18 @@
       <li><a class="dropdown-item" href="{% url 'manage_courses' %}"><i class="fas fa-book-open me-2"></i>Manage Courses</a></li>
       <li><a class="dropdown-item" href="{% url 'manage_years' %}"><i class="fas fa-calendar-alt me-2"></i>Manage Years</a></li>
     </ul>
+  </div> -->
+  <div class="dropdown">
+    <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+      <i class="fas fa-cogs me-2"></i>Contact Support
+    </a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'admin_contact_messages' %}"><i class="fas fa-book-open me-2"></i>Contact Messages</a></li>
+      <!-- <li><a class="dropdown-item" href="{% url 'manage_years' %}"><i class="fas fa-calendar-alt me-2"></i>Manage Years</a></li> -->
+    </ul>
   </div>
 
-  <a href="{% url 'view_request_book' %}"><i class="far fa-heart me-2"></i>View Requested Books</a>
+  <a href="{% url 'book_requests_list' %}"><i class="far fa-heart me-2"></i>View Requested Books</a>
 </div>
 
 <!-- Main Content -->
@@ -127,8 +138,9 @@
   <!-- Admin dashboard content goes here -->
   {% endblock content %}
 </main>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>

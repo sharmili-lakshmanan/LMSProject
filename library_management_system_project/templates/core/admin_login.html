@@ -1,0 +1,47 @@
+<!-- filepath: d:\LMS\university LMS\library_management_system_project\templates\core\admin_login.html -->
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Admin Login | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'core/css/admin_login.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card p-4">
+        <div class="card-body">
+          <h3 class="text-center mb-4">Admin Login</h3>
+          <form method="post" action="{% url 'admin_login' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            {% if field_errors %}
+              <div class="alert alert-danger">
+                {% for error in field_errors.values %}
+                  <div>{{ error }}</div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+          </form>
+          <div class="text-center mt-3">
+            <a href="{% url 'login' %}">Student Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

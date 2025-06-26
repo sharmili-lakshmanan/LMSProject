@@ -5,7 +5,7 @@
 .main-content {
   flex: 1; 
   padding: 20px;
-    margin-left: 250px; /* Adjust for sidebar width */
+    /* margin-left: 250px; Adjust for sidebar width */
   background: #f9f9f9;
 }
 .course-form {

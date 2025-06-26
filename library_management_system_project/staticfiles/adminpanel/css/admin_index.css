@@ -1,13 +1,32 @@
 /* Main Content */
-.col-md-10.p-4 {
-    margin-left: 250px;
-}
+/* .col-md-10.p-4 {
+    /* margin-left: 250px; *
+} */
 .col-md-10 {
   /* margin-left: 250px; Adjust for sidebar width */
   padding: 30px;
   width: calc(100% - 250px);
 }
+.chart-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem;
+}
 
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 450px;
+}
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}
 .d-flex {
   display: flex;
 }

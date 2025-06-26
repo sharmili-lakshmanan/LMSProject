@@ -20,34 +20,42 @@
                     <th>Borrowed Date</th>
                     <th>Return Date</th>
                     <th>Return Status</th>
-                    <th>Fines</th>
+                    <!-- <th>Fines</th> -->
+                    <!-- <th>Action</th> -->
                 </tr>
             </thead>
             <tbody>
+                {% for issued in borrowed_books %}
                 <tr>
-                    <td>BK00123</td>
-                    <td>Introduction to Algorithms</td>
-                    <td>2025-05-10</td>
-                    <td>2025-05-24</td>
-                    <td><span class="badge bg-success">Returned</span></td>
-                    <td>Rs 0.00</td>
+                    <td>{{ issued.book.book_id }}</td>
+                    <td>{{ issued.book.title }}</td>
+                    <td>{{ issued.issue_date }}</td>
+                    <td>{{ issued.due_date }}</td>
+                    <td>
+                        {% if issued.status == 'returned' %}
+                            <span class="badge bg-success">Returned</span>
+                        {% elif issued.status == 'due_soon' %}
+                            <span class="badge bg-warning text-dark">Due Soon</span>
+                        {% elif issued.status == 'overdue' %}
+                            <span class="badge bg-danger">Overdue</span>
+                        {% else %}
+                            <span class="badge bg-secondary">{{ issued.status|capfirst }}</span>
+                        {% endif %}
+                    </td>
+                    <!-- <td>Rs {{ issued.fine_amount|default:"0.00" }}</td> -->
+                    <!-- <td>
+                        {% if issued.status == 'overdue' or issued.fine_amount %}
+                            <button>Pay Now</button>
+                        {% else %}
+                            <span class="text-muted">-</span>
+                        {% endif %}
+                    </td> -->
                 </tr>
+                {% empty %}
                 <tr>
-                    <td>BK00245</td>
-                    <td>The History of Time</td>
-                    <td>2025-05-18</td>
-                    <td>2025-06-01</td>
-                    <td><span class="badge bg-warning text-dark">Due Soon</span></td>
-                    <td>Rs 0.00</td>
+                    <td colspan="6" class="text-center">No borrowed books found.</td>
                 </tr>
-                <tr>
-                    <td>BK00376</td>
-                    <td>Data Science Essentials</td>
-                    <td>2025-05-01</td>
-                    <td>2025-05-15</td>
-                    <td><span class="badge bg-danger">Overdue</span></td>
-                    <td>Rs 5.00</td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

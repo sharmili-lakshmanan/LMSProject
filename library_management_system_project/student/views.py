@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 from .models import BookRequest
+from adminpanel.models import IssuedBook
 from .models import ContactMessage
 from django.contrib import messages
 from .models import Book
@@ -35,15 +37,32 @@ def student_dashboard(request):
         'course': request.user.course,
     }
     return render(request, 'student/student_dashboard.html', context)
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.hashers import check_password
+from django.shortcuts import render, redirect
+
 @login_required
 def change_password(request):
-    return render(request, 'student/change_password.html', {
-        'full_name': request.user.full_name,
-        'user_id': request.user.user_id,
-        'email': request.user.email,
-        'admission_number': request.user.admission_number,
-        'course': request.user.course,
-    })
+    if request.method == 'POST':
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if new_password != confirm_password:
+            messages.error(request, "Passwords do not match.")
+        elif len(new_password) < 8 or len(new_password) > 15:
+            messages.error(request, "Password must be between 8 and 15 characters.")
+        elif check_password(new_password, request.user.password):
+            messages.error(request, "New password is the same as the old password. Please choose a different one.")
+        else:
+            request.user.set_password(new_password)
+            request.user.save()
+            update_session_auth_hash(request, request.user)  # Important: keeps user logged in after password change
+            messages.success(request, "Your password was changed successfully.")
+            return redirect('student_dashboard')  # replace with your desired redirect
+    return render(request, 'student/change_password.html')
+
 @login_required
 def issued_books(request):
     return render(request, 'student/issued_books.html', {
@@ -73,17 +92,20 @@ def report_issue(request):
     })
 @login_required
 def contact_librarian(request):
-    success = False  # Flag to indicate if the form was submitted
+    success = False
 
     if request.method == 'POST':
-        student_name = request.POST.get('studentName')
-        email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         contact_method = request.POST.get('contactMethod')
         attachment = request.FILES.get('attachment')
 
+        user = request.user
+        student_name = user.full_name
+        email = user.email
+
         ContactMessage.objects.create(
+            student=user,
             student_name=student_name,
             email=email,
             subject=subject,
@@ -92,12 +114,13 @@ def contact_librarian(request):
             attachment=attachment,
         )
 
-        success = True  # Set success flag
+        success = True
 
-    return render(request, 'student/contact_librarian.html', {'success': success})
-@login_required
-def contact_success(request):
-    return render(request, 'student/contact_success.html')
+    return render(request, 'student/contact_librarian.html', {'success': success,
+                                                              
+        'full_name': request.user.full_name,
+        'user_id': request.user.user_id,})
+
 
 @login_required
 def requested_books(request):
@@ -124,26 +147,62 @@ def requested_books(request):
         'admission_number': request.user.admission_number,
         'course': request.user.course,
     })
+    
 @login_required
 def student_profile(request):
-    return render(request, 'student/student_profile.html', {
-        'full_name': request.user.full_name,
-        'user_id': request.user.user_id,
-        'email': request.user.email,
-        'admission_number': request.user.admission_number,
-        'course': request.user.course,
-        'year': request.user.year,
-        'department': request.user.department,
-        'admission_year': request.user.admission_year,
-        'passout_year': request.user.passout_year,
-        'phone_number': request.user.phone_number,
-    })
+    user = request.user
+
+    if request.method == 'POST':
+        new_email = request.POST.get('email')
+        new_phone = request.POST.get('phone_number')
+        profile_photo = request.FILES.get('profile_photo')
+
+        if new_email:
+            user.email = new_email
+        if new_phone:
+            user.phone_number = new_phone
+        if profile_photo:
+            user.profile_photo = profile_photo
+
+        user.save()
+        messages.success(request, "Profile updated successfully!")
+        return redirect('student_profile')  # Replace with your actual URL name
+
+    # Values for non-editable fields
+    total_borrowed = user.borrowed_books.count() if hasattr(user, 'borrowed_books') else 0
+    current_books = user.borrowed_books.filter(returned=False).count() if hasattr(user, 'borrowed_books') else 0
+    fine_balance = user.fine_balance if hasattr(user, 'fine_balance') else 0.00
+
+    context = {
+        'full_name': user.full_name,
+        'email': user.email,
+        'phone_number': user.phone_number,
+        'course': user.course,
+        'department': user.department,
+        'admission_year': user.admission_year,
+        'passout_year': user.passout_year,
+        'user_id': user.user_id,
+        'total_borrowed': total_borrowed,
+        'current_books': current_books,
+        'fine_balance': fine_balance,
+    }
+
+    return render(request, 'student/student_profile.html', context)
+  
 @login_required
 def borrowed_books(request):
-    return render(request, 'student/borrowed_books.html', {
-        'full_name': request.user.full_name,
-        'user_id': request.user.user_id,
-        'email': request.user.email,
-        'admission_number': request.user.admission_number,
-        'course': request.user.course,
-    })
+    borrowed_books = IssuedBook.objects.filter(
+        student=request.user,
+        
+        status__in=['collected', 'overdue', 'returned', 'due_soon']
+    ).order_by('-issue_date')
+    
+        
+        
+       
+    return render(request, 'student/borrowed_books.html', {'borrowed_books': borrowed_books,
+                                                           'full_name': request.user.full_name,
+                                                           'user_id': request.user.user_id,
+                                                           'email': request.user.email,
+                                                           'admission_number': request.user.admission_number,
+                                                           'course': request.user.course,})

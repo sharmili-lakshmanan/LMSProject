@@ -8,44 +8,127 @@
 {% endblock extra_head %}
 {% block content %}
 <!-- Main Content -->
-    <div class="col-md-10 p-4">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <!-- <h3>Dashboard</h3> -->
-        <div>
-          <span class="me-3">Welcome back, Admin</span>
-          <i class="bi bi-bell fs-5 me-3"></i>
-          <i class="bi bi-person-circle fs-5"></i>
-        </div>
-      </div>
-
-      <!-- Stats Cards -->
-      <div class="row mb-4">
-        <div class="col-md-3">
-          <div class="card p-3">
-            <h6>Total Members</h6>
-            <h4>1503 <span class="text-success small">+10.74%</span></h4>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card p-3">
-            <h6>Borrowed Books</h6>
-            <h4>2405 <span class="text-success small">+3.02%</span></h4>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card p-3">
-            <h6>Total Books</h6>
-            <h4>32345 <span class="text-success small">+11%</span></h4>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card p-3">
-            <h6>New Members</h6>
-            <h4>184 <span class="text-danger small">-10.02%</span></h4>
-          </div>
-        </div>
-      </div>
-
+<div class="col-md-10 p-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- <h3>Dashboard</h3> -->
+    <div>
+      <span class="me-3">Welcome back, Admin</span>
+      <i class="bi bi-bell fs-5 me-3"></i>
+      <i class="bi bi-person-circle fs-5"></i>
     </div>
-  
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h6>Total Members</h6>
+        <h4>{{ total_members }}</h4>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h6>Borrowed Books</h6>
+        <h4>{{ borrowed_books }}</h4>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h6>Total Books</h6>
+        <h4>{{ total_books }}</h4>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card p-3">
+        <h6>New Members</h6>
+        <h4>{{ new_members }}</h4>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- Include Chart.js -->
+
+<!-- <div class="chart-container">
+  <div class="card">
+    <h3>Book Categories</h3>
+    <canvas id="bookCategoryChart"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Most Issued Books</h3>
+    <canvas id="mostIssuedBooksChart"></canvas>
+  </div>
+</div> -->
+
+
 {% endblock content %}
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Pie Chart for Book Categories
+  const categoryCtx = document.getElementById('bookCategoryChart').getContext('2d');
+  new Chart(categoryCtx, {
+    type: 'doughnut',
+    data: {
+      labels: "{{ chart_labels|safe }}",
+    datasets: [{
+      label: 'Book Categories',
+      data: "{{ chart_data| safe }}",
+    backgroundColor: [
+      '#0074D9', '#2ECC40', '#FF851B', '#FF4136', '#B10DC9',
+      '#85144b', '#3D9970', '#111111', '#AAAAAA'
+    ],
+    borderWidth: 1
+      }]
+    },
+    options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Books by Category'
+      },
+      legend: {
+        position: 'right'
+      }
+    }
+  }
+  });
+
+  // Bar Chart for Most Issued Books
+  const barCtx = document.getElementById('mostIssuedBooksChart').getContext('2d');
+  new Chart(barCtx, {
+    type: 'bar',
+    data: {
+      labels: "{{ bar_labels| safe }}",
+    datasets: [{
+      label: 'Issued Count',
+      data: "{{ bar_data| safe }}",
+    backgroundColor: '#0074D9',
+    borderRadius: 4,
+    barPercentage: 0.6,
+      }]
+    },
+    options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Most Issued Books'
+      },
+      legend: {
+        display: false
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        precision: 0
+      }
+    }
+  }
+  });
+</script>
+
+{% endblock extra_js %}

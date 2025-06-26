@@ -1,0 +1,99 @@
+{% extends "adminpanel/base.html" %}
+{% load static %}
+
+{% block title %}Admin Dashboard | EduShelf{% endblock title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'adminpanel/css/view_request_book.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<div class="content-wrapper">
+  <section class="content-header">
+    <h2>Book Requests</h2>
+  </section>
+
+  <section class="content-request">
+    <div class="box">
+      <div class="box-body table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Student ID</th>
+              <th>Student Name</th>
+              <th>Book ID</th>
+              <th>Book Title</th>
+              <th>Request Date</th>
+              <th>Collection Date</th>
+              <th>Collection Time</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for request in book_requests %}
+            <tr>
+              <td>{{ request.student.user_id }}</td>
+              <td>{{ request.student.full_name }}</td>
+              <td>{{ request.book.book_id }}</td>
+              <td>{{ request.book.title }}</td>
+              <td>{{ request.requested_at|date:"Y-m-d H:i" }}</td>
+              <td>
+                {% if request.collection_date %}
+                  {{ request.collection_date|date:"Y-m-d" }}
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+              <td>
+                {% if request.collection_time %}
+                  {{ request.collection_time|time:"H:i" }}
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+              <td>
+                <span class="label 
+                  {% if request.status == 'Approved' %}label-success
+                  {% elif request.status == 'Collected' %}label-primary
+                  {% elif request.status == 'Rejected' %}label-danger
+                  {% else %}label-warning{% endif %}">
+                  {{ request.status }}
+                </span>
+              </td>
+              <td>
+                {% if request.status == 'Pending' %}
+                  <a href="{% url 'issue_book' request.id %}" class="btn btn-success btn-sm" title="Approve and Set Collection Info">
+                    Approve
+                  </a>
+                  <form method="post" action="{% url 'reject_book_request' request.id %}" class="action-form d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm" title="Reject">
+                      Reject
+                    </button>
+                  </form>
+                {% elif request.status == 'Approved' %}
+                  <form method="post" action="{% url 'mark_as_collected' request.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-sm">Mark as Collected</button>
+                  </form>
+                {% elif request.status == 'Collected' %}
+                  <span class="badge bg-success">Issued</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="9" class="text-center">No book requests found</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+{% endblock extra_js %}

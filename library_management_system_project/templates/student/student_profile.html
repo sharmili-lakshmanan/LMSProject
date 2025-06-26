@@ -9,81 +9,74 @@
 
 {% block content %}
 <div class="main-content p-4 ">
-    <form class="card p-4">
+    <form class="card p-4" method="POST">
+        {% csrf_token %}
         <h4>Edit Library Profile</h4>
         <hr />
+        {% if error in messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
         <div class="row mb-3">
             <div class="col-md-6">
                 <label>Name</label>
-                <input type="text" class="form-control" value="{{ full_name }}" >
+                <input type="text" class="form-control" value="{{ full_name }}" readonly>
             </div>
             <div class="col-md-6">
                 <label>Email</label>
-                <input type="email" class="form-control" value="{{ email }}" >
+                <input type="email" name="email" class="form-control" value="{{ email }}">
             </div>
-            
         </div>
+
         <div class="row mb-3">
             <div class="col-md-6">
                 <label>Mobile</label>
-                <input type="text" class="form-control" value="{{ phone_number }}" >
+                <input type="text" name="phone_number" class="form-control" value="{{ phone_number }}">
             </div>
             <div class="col-md-6">
                 <label>Course</label>
                 <input type="text" class="form-control" value="{{ course }}" readonly>
             </div>
         </div>
+
         <div class="row mb-3">
             <div class="col-md-6">
                 <label>Department</label>
-                <input type="text" class="form-control" value="{{ department }}" readonly>
-            </div>
-            <div class="col-md-6">
-                <label>Membership</label>
-                <select class="form-select">
-                    <option selected>UG Student</option>
-                    <option>PG Student</option>
-                    <!-- <option>PhD Scholar</option> -->
-                </select>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label>Admission Year</label>
-                <input type="text" class="form-control" value="{{ admission_year }}" readonly>
+                <input type="text" class="form-control" value="{{department}}" readonly>
             </div>
             <div class="col-md-6">
                 <label>Passout Year</label>
                 <input type="text" class="form-control" value="{{ passout_year }}" readonly>
             </div>
         </div>
+        <!-- No changes to other readonly fields -->
         <div class="row mb-3">
             <div class="col-md-6">
                 <label>Total Books Borrowed</label>
-                <input type="number" class="form-control" value="nil" readonly>
+                <input type="number" class="form-control" value="{{ total_borrowed }}" readonly>
             </div>
             <div class="col-md-6">
                 <label>Current Books</label>
-                <input type="number" class="form-control" value="nil" readonly>
+                <input type="number" class="form-control" value="{{ current_books }}" readonly>
             </div>
         </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label>Joined Date</label>
-                <input type="date" class="form-control" value="2022-09-01" readonly>
-            </div>
+
+        <!-- <div class="row mb-3">
             <div class="col-md-6">
                 <label>Fine Balance (₹)</label>
-                <input type="text" class="form-control" value="0.00" readonly>
+                <input type="text" class="form-control" value="{{ fine_balance }}" readonly>
             </div>
-        </div>
+        </div> -->
+
         <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
     </form>
+
 
     <!-- Right Profile Card -->
     <div class="col-md-3 p-4">
         <div class="profile-card text-center p-3">
-            <img src="{% static 'student/images/prof.avif' %}" alt="Profile" class="profile-photo mb-3">
+            <img src="{{ user.profile_photo.url }}" alt="Profile" class="profile-photo mb-3">
             <h6>{{user_id}}</h6>
             <p class="text-muted">{{ email }}</p>
             <!-- <button class="btn btn-outline-secondary btn-sm">Change Photo</button> -->
@@ -107,6 +100,11 @@
                     onclick="stopCamera()"></button>
             </div>
             <div class="modal-body text-center">
+                <form id="photoForm" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" id="hiddenUpload" name="profile_photo" style="display: none;">
+                </form>
+
                 <!-- Webcam Preview -->
                 <video id="cameraPreview" autoplay playsinline width="100%"
                     style="display: none; border-radius: 10px;"></video>
@@ -128,6 +126,8 @@
         </div>
     </div>
 </div>
+
+
 {% endblock content %}
 {% block scripts %}
 
@@ -172,19 +172,33 @@
         }
     }
 
-    function savePhoto() {
-        if (video.style.display === "block") {
-            alert("Captured image (would be sent to backend).");
-        } else if (uploadedImage.style.display === "block") {
-            alert("Uploaded image (would be sent to backend).");
-        } else {
-            alert("No image selected.");
-        }
+  function savePhoto() {
+    const form = document.getElementById("photoForm");
 
-        const modal = bootstrap.Modal.getInstance(document.getElementById('photoModal'));
-        modal.hide();
-        stopCamera();
+    // If using webcam (you want to implement this later with canvas)
+    if (video.style.display === "block") {
+        alert("Captured image saving not implemented yet.");
+        return;
     }
+
+    // If an image was uploaded
+    const fileInput = document.getElementById("uploadInput");
+    const file = fileInput.files[0];
+    if (file) {
+        const hiddenUpload = document.getElementById("hiddenUpload");
+        hiddenUpload.files = fileInput.files;
+
+        // Submit the form via JavaScript
+        form.submit();
+    } else {
+        alert("No image selected.");
+    }
+
+    const modal = bootstrap.Modal.getInstance(document.getElementById('photoModal'));
+    modal.hide();
+    stopCamera();
+}
+
 
 
 </script>

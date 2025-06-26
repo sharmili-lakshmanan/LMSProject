@@ -1,4 +1,3 @@
-
 {% extends "adminpanel/base.html" %}
 {% load static %}
 
@@ -12,7 +11,7 @@
 
 <div class="content-wrapper">
   <h2>View All Issued Books</h2>
-  
+
   <div class="breadcrumb">
     <!-- <a href="#">Home</a> &gt; Manage Issued Books -->
   </div>
@@ -21,77 +20,75 @@
     <table>
       <thead>
         <tr>
-          <th><input type="text" placeholder="Type Student ID"></th>
-          <th><input type="text" placeholder="Type Student Name"></th>
-          <th><input type="text" placeholder="Type Book ID"></th>
+          <th><input type="text" id="bookIdFilter" placeholder="Type Book ID"></th>
+          <th><input type="text" id="studentIdFilter" placeholder="Type Student ID"></th>
+          <th><input type="text" id="studentNameFilter" placeholder="Type Student Name"></th>
         </tr>
         <tr>
           <th>Book ID</th>
-          <th>Book Name</th>
           <th>Student ID</th>
           <th>Student Name</th>
+          <th>Book Name</th>
+          <th>Collected at</th>
           <th>Issued Date</th>
-          <th>Date Due</th>
+          <th>Due Date</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
+      <!--  -->
       <tbody>
+        {% for request in issued_books %}
         <tr>
-          <td>7515169</td>
-          <td>The Book as Art</td>
-          <td>1004</td>
-          <td>Stefen Harry</td>
-          <td>31-12-2017</td>
-          <td>07-01-2018</td>
-          <td>3</td>
-          <td class="actions">
-            <button class="btn-view" title="View"><i class="fa fa-eye"></i></button>
-            <button class="btn-return" title="Return"><i class="fa fa-undo"></i></button>
+          <td>{{ request.book.book_id }}</td>
+          <td>{{ request.student.user_id }}</td>
+          <td>{{ request.student.full_name }}</td>
+          <td>{{ request.book.title }}</td>
+          <td>
+            {% if request.collected_at %}
+            {{ request.collected_at|date:"d-m-Y H:i" }}
+            {% else %}
+            -
+            {% endif %}
           </td>
+          <td>{{ request.issue_date|date:"d-m-Y" }}</td>
+          <td>{{ request.due_date|date:"d-m-Y" }}</td>
+          <td>{{ request.status|title }}</td>
+          <!-- <td class="actions">
+            <!-- <button class="btn-view" title="View"><i class="fa fa-eye"></i></button> --
+            {% if request.status == 'Approved' %}
+            <form method="POST" action="{% url 'return_book' request.id %}" style="display:inline;">
+              {% csrf_token %}
+              <button class="btn-return" title="Return"><i class="fa fa-undo"></i></button>
+            </form>
+            {% endif %}
+          </td> -->
+
+          <td>
+  {% if request.status == 'returned' %}
+    <span class="badge badge-success">Returned</span>
+  {% elif request.due_date and request.due_date < today and request.status != 'returned' %}
+    <span class="badge badge-danger">Overdue</span>
+  {% else %}
+    <span class="badge badge-warning">{{ request.status|title }}</span>
+  {% endif %}
+</td>
+<td class="actions">
+  {% if request.status != 'returned' %}
+    <form method="POST" action="{% url 'mark_as_returned' request.id %}" style="display:inline;">
+      {% csrf_token %}
+      <button class="btn-return" title="Mark as Returned"><i class="fa fa-undo"></i></button>
+    </form>
+  {% endif %}
+</td>
+
+          
         </tr>
-        <!-- Add more dummy rows as needed -->
-
+        {% empty %}
         <tr>
-  <td>7853241</td>
-  <td>Introduction to Algorithms</td>
-  <td>1005</td>
-  <td>Alice Johnson</td>
-  <td>10-01-2018</td>
-  <td>17-01-2018</td>
-  <td>2</td>
-  <td class="actions">
-    <button class="btn-view" title="View"><i class="fa fa-eye"></i></button>
-    <button class="btn-return" title="Return"><i class="fa fa-undo"></i></button>
-  </td>
-</tr>
-<tr>
-  <td>8956432</td>
-  <td>Clean Code</td>
-  <td>1006</td>
-  <td>Robert Martin</td>
-  <td>05-02-2018</td>
-  <td>12-02-2018</td>
-  <td>1</td>
-  <td class="actions">
-    <button class="btn-view" title="View"><i class="fa fa-eye"></i></button>
-    <button class="btn-return" title="Return"><i class="fa fa-undo"></i></button>
-  </td>
-</tr>
-<tr>
-  <td>6621740</td>
-  <td>Modern Operating Systems</td>
-  <td>1007</td>
-  <td>Emily Carter</td>
-  <td>20-03-2018</td>
-  <td>27-03-2018</td>
-  <td>4</td>
-  <td class="actions">
-    <button class="btn-view" title="View"><i class="fa fa-eye"></i></button>
-    <button class="btn-return" title="Return"><i class="fa fa-undo"></i></button>
-  </td>
-</tr>
-
+          <td colspan="8">No issued books found.</td>
+        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
@@ -99,4 +96,37 @@
 {% endblock content %}
 
 {% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const bookIdInput = document.getElementById("bookIdFilter");
+    const studentIdInput = document.getElementById("studentIdFilter");
+    const studentNameInput = document.getElementById("studentNameFilter");
+    const table = document.querySelector(".issued-books-table table");
+    const rows = table.querySelectorAll("tbody tr");
+
+    function filterTable() {
+      const bookIdVal = bookIdInput.value.toLowerCase();
+      const studentIdVal = studentIdInput.value.toLowerCase();
+      const studentNameVal = studentNameInput.value.toLowerCase();
+
+      rows.forEach(row => {
+        const cells = row.querySelectorAll("td");
+        const bookId = cells[0]?.textContent.toLowerCase() || "";
+        const studentId = cells[1]?.textContent.toLowerCase() || "";
+        const studentName = cells[2]?.textContent.toLowerCase() || "";
+
+        const isVisible =
+          bookId.includes(bookIdVal) &&
+          studentId.includes(studentIdVal) &&
+          studentName.includes(studentNameVal);
+
+        row.style.display = isVisible ? "" : "none";
+      });
+    }
+
+    bookIdInput.addEventListener("input", filterTable);
+    studentIdInput.addEventListener("input", filterTable);
+    studentNameInput.addEventListener("input", filterTable);
+  });
+</script>
 {% endblock extra_js %}

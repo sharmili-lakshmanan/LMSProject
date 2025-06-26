@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
@@ -67,6 +68,7 @@ class CustomUserManager(BaseUserManager):
 #         return self.full_name
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     user_id = models.CharField(max_length=20, unique=True, blank=True, null=True)  # for students only
+    profile_photo = models.ImageField(upload_to='profile_photos/', default='profile_photos/default_profile.png', blank=True)
     admission_number = models.CharField(max_length=20, unique=True, blank=True, null=True)
     full_name = models.CharField(max_length=100, blank=True, null=True)
     email = models.EmailField(unique=True)
@@ -76,6 +78,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     admission_year = models.PositiveIntegerField(blank=True, null=True)
     passout_year = models.PositiveIntegerField(blank=True, null=True)
     phone_number = models.CharField(max_length=10, blank=True, null=True)
+    date_joined = models.DateTimeField(default=timezone.now)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

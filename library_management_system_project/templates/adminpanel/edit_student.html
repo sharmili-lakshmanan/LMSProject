@@ -23,7 +23,8 @@
                 </div>
                 <div class="form-group">
                     <label for="admission_number">Admission Number</label>
-                    <input type="text" name="admission_number" id="admission_number" value="{{ students.admission_number }}">
+                    <input type="text" name="admission_number" id="admission_number" value="{{ students.admission_number }}" readonly
+                    >
                 </div>
             </div>
 
@@ -34,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label for="course">Course</label>
-                    <input type="text" name="course" id="course" value="{{ students.course }}">
+                    <input type="text" name="course" id="course" value="{{ students.course }}" readonly>
                 </div>
             </div>
 
@@ -45,18 +46,18 @@
                 </div> -->
                 <div class="form-group">
                     <label for="department">Department</label>
-                    <input type="text" name="department" id="department" value="{{ students.department }}">
+                    <input type="text" name="department" id="department" value="{{ students.department }}" readonly>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="admission_year">Admission Year</label>
-                    <input type="number" name="admission_year" id="admission_year" value="{{ students.admission_year }}">
+                    <input type="number" name="admission_year" id="admission_year" value="{{ students.admission_year }}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="passout_year">Passout Year</label>
-                    <input type="number" name="passout_year" id="passout_year" value="{{ students.passout_year }}">
+                    <input type="number" name="passout_year" id="passout_year" value="{{ students.passout_year }}" readonly>
                 </div>
             </div>
 

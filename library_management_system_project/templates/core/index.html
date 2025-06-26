@@ -1,25 +1,51 @@
 {% extends "core/base.html" %}
 {% load static %}
-{% block title %}Catalog | EduShelf{% endblock title %}
+{% block title %}HOME | EduShelf{% endblock title %}
   {% block extra_head %}
   <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
   {% endblock %}
 
 {% block content %}
-<section class="welcome-section py-5">
+
+<!-- Features Section -->
+<section class="features-section py-5 bg-light">
   <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <img src="{% static 'core/images/index.png' %}" alt="Library" class="img-fluid rounded">
+    <div class="text-center mb-5">
+      <h3 class="fw-bold">Welcome to EduShelf
+Your Digital Library Companion</h3>
+      <p class="text-muted">Streamline your library experience with our all-in-one management tools.</p>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <i class="fas fa-book fa-3x mb-3 text-primary"></i>
+        <h5>Book Catalog</h5>
+        <p>Browse, search, and explore a rich catalog of books available in the library.</p>
       </div>
-      <div class="col-md-6 text-center text-md-start">
-        <h2 class="fw-bold">Welcome to <em>EduShelf</em></h2>
-        <p class="lead">Manage your reading, borrowing, and requests all in one place.</p>
-        <a href="{% url 'about' %}" class="btn btn-primary mt-3">Explore More</a>
+      <div class="col-md-4">
+        <i class="fas fa-user fa-3x mb-3 text-primary"></i>
+        <h5>User Dashboard</h5>
+        <p>Track your borrowing history, due dates, and requests with ease.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="fas fa-calendar-check fa-3x mb-3 text-primary"></i>
+        <h5>Online Requests</h5>
+        <p>Reserve books and submit requests for new materials without visiting the library.</p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Call to Action -->
+<section class="cta-section text-white text-center py-5" style="background-color: #004080;">
+  <div class="container">
+    <h4>Ready to Discover More?</h4>
+    <p class="mb-4">Login or register now to access your personalized library dashboard.</p>
+    <a href="{% url 'login' %}" class="btn btn-light">Login</a>
+    <a href="{% url 'sign_up' %}" class="btn btn-outline-light ms-2">Register</a>
+  </div>
+</section>
+
+
 
 {% endblock %}
 {% block extra_js %}
